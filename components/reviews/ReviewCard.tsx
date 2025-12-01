@@ -1,7 +1,7 @@
 import React from 'react';
 import { Star } from 'lucide-react';
 import { Review } from '@/types';
-import { cn } from '@/lib/utils';
+import { cn, formatDate } from '@/lib/utils';
 
 interface ReviewCardProps {
   review: Review;
@@ -9,11 +9,7 @@ interface ReviewCardProps {
 }
 
 export function ReviewCard({ review, className }: ReviewCardProps) {
-  const formattedDate = new Date(review.date).toLocaleDateString('ru-RU', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
+  const formattedDate = formatDate(review.date);
 
   return (
     <article className={cn('rounded-xl border border-slate-200 bg-white p-4 shadow-sm', className)}>
