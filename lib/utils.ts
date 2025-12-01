@@ -12,3 +12,18 @@ export function formatPrice(price: number) {
     maximumFractionDigits: 0,
   }).format(price);
 }
+
+export function formatDate(dateString: string | undefined | null): string {
+  if (!dateString) return '';
+
+  const dateObj = new Date(dateString);
+  if (isNaN(dateObj.getTime())) {
+    return '';
+  }
+
+  return dateObj.toLocaleDateString('ru-RU', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+}
