@@ -14,7 +14,7 @@ The platform allows users to:
 ## Key Features
 
 - **Curated Catalog:** Browse tours by region (Sochi, Abkhazia, Krasnaya Polyana) or type (Tour, Transfer, Photo-tour).
-- **Rich Detail Pages:** Deep dive into tour programs with Markdown-rendered descriptions and itineraries (`src/pages/TourDetail.tsx`).
+- **Rich Detail Pages:** Deep dive into tour programs with Markdown-rendered descriptions and itineraries (`pages/TourDetail.tsx`).
 - **Secure Booking Flow:** Integrated booking form with real-time validation using **Zod** and **React Hook Form**.
 - **Responsive Design:** Fully mobile-optimized UI built with **Tailwind CSS**.
 - **Mock-First Development:** Runs seamlessly without a backend in development mode, simulating network latency for realistic UX testing.
@@ -44,6 +44,7 @@ This project is a modern Single Page Application (SPA) built for performance and
 ├── public/            # Static assets
 ├── types.ts           # Shared TypeScript interfaces (Tour, Review, etc.)
 ├── App.tsx            # Main application shell and routing
+├── constants.ts       # Mock data for tours and reviews
 └── vercel.json        # Vercel deployment configuration
 ```
 

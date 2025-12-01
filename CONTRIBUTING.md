@@ -12,6 +12,8 @@ Public contributions (Pull Requests from external forks) are generally not accep
 
 Please refer to the [README.md](./README.md) for instructions on how to set up the development environment, install dependencies, and run the application locally.
 
+**Note:** This project uses a flat file structure. Core application code is located in `components/`, `lib/`, and `pages/` at the project root. There is no `src/` directory.
+
 ## Development Workflow
 
 We follow a structured Git workflow to ensure stability and code quality.

@@ -9,7 +9,7 @@ The application follows a **Mock-First** architecture. The frontend is capable o
 ```mermaid
 graph TD
     subgraph Client [Frontend Application]
-        UI[Pages & Components]
+        UI[Pages & Components<br>(No src directory)]
 
         subgraph DataLayer [Data Access Layer]
             TourService["lib/api.ts<br>(Tour & Review Data)"]

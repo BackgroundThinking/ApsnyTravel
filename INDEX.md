@@ -19,6 +19,8 @@ The `docs/` directory contains detailed reports on the system's architecture, st
 
 ## 🗺️ Project Map
 
+The project follows a flat structure (no `src/` directory).
+
 *   **`components/`**: Reusable UI components.
 *   **`lib/`**: Core logic, including API mocks (`api.ts`), booking validation (`booking.ts`), branding configuration (`branding.ts`), and SEO helpers (`seo.ts`).
 *   **`pages/`**: Route-level components.
