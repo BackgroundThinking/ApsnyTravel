@@ -38,171 +38,184 @@ export const REVIEWS: Review[] = [
 ];
 
 export const TOURS: Tour[] = [
+  // ABKHAZIA
   {
     id: '1',
-    slug: 'lake-ritsa',
-    title: 'Озеро Рица — жемчужина Абхазии',
-    short_desc: 'Легендарное высокогорное озеро в окружении вековых лесов. Голубое озеро, водопады и Юпшарский каньон.',
+    slug: 'abkhazia-country-of-soul',
+    title: 'Абхазия — «Страна Души»',
+    short_desc: 'Авторский маршрут: Гагра, Пицунда, озеро Рица, Новый Афон и дикие пляжи.',
     description_md: `
       ## Чего ожидать
-      Это не просто поездка к озеру — это путешествие через самые живописные места Абхазии. Вы увидите бирюзовую воду Голубого озера, «Каменный мешок» Юпшарского каньона и само озеро Рица на высоте 950 метров.
+      Большое путешествие по главным местам силы Абхазии. Мы увидим легендарное озеро Рица, величественные каньоны, древние храмы и заброшенные города-призраки.
 
       ## Программа
-      * 08:00 — Выезд из Адлера или Сочи.
-      * 10:00 — Водопад «Девичьи слёзы».
-      * 10:30 — Голубое озеро.
-      * 11:30 — Юпшарский каньон.
-      * 12:30 — Озеро Рица (2 часа свободного времени).
-      * 15:30 — Обратный путь с заездом на рынок (мёд, сыр).
-      * 18:00 — Возвращение.
+      * Встреча в Адлере или Сочи.
+      * Гагра: Колоннада, ресторан Гагрипш, парк принца Ольденбургского.
+      * Бзыбское ущелье и Голубое озеро.
+      * Юпшарский каньон («Каменный мешок»).
+      * Озеро Рица и водопады.
+      * Пицунда: реликтовая сосновая роща.
+      * Обед в проверенном месте (аутентичная кухня, без туристических ловушек).
 
-      ## Важно знать
-      Для въезда в Абхазию нужен российский паспорт. Детям — свидетельство о рождении.
+      ## Особенности
+      Помощь на границе, комфортный Mercedes V-Class или E-Class. Возможность корректировать маршрут.
     `,
     region: TourRegion.ABKHAZIA,
     type: TourType.TOUR,
     difficulty: TourDifficulty.EASY,
     duration_hours: 10,
-    price_from: 4500,
+    price_from: 10000,
     currency: 'RUB',
     cover_image: 'https://picsum.photos/800/600?random=1',
-    gallery_images: ['https://picsum.photos/800/600?random=11', 'https://picsum.photos/800/600?random=12', 'https://picsum.photos/800/600?random=13'],
-    tags: ['Природа', 'Горы', 'Семейный', 'Озёра'],
+    gallery_images: ['https://picsum.photos/800/600?random=11', 'https://picsum.photos/800/600?random=12'],
+    tags: ['Природа', 'История', 'Гастрономия', 'Авторский'],
+    is_active: true,
+  },
+
+  // SOCHI & COAST
+  {
+    id: '2',
+    slug: 'sochi-olympic-coast',
+    title: 'Сочи и Олимпийское побережье',
+    short_desc: 'Обзорная экскурсия: от исторического центра Сочи до футуристического Сириуса.',
+    description_md: `
+      ## Чего ожидать
+      Контрасты курортной столицы. Мы проедем по Курортному проспекту, прогуляемся у Морпорта, увидим сталинский ампир и современные олимпийские объекты.
+
+      ## Программа
+      * Морской порт Сочи.
+      * Парк Ривьера и исторический центр.
+      * Дача Сталина (по желанию).
+      * Гора Ахун со смотровой башней.
+      * Олимпийский парк и шоу фонтанов (вечером).
+    `,
+    region: TourRegion.SOCHI,
+    type: TourType.TOUR,
+    difficulty: TourDifficulty.EASY,
+    duration_hours: 6,
+    price_from: 8000,
+    currency: 'RUB',
+    cover_image: 'https://picsum.photos/800/600?random=2',
+    gallery_images: ['https://picsum.photos/800/600?random=21'],
+    tags: ['Город', 'История', 'Олимпиада'],
+    is_active: true,
+  },
+
+  // KRASNAYA POLYANA
+  {
+    id: '3',
+    slug: 'krasnaya-polyana-mountains',
+    title: 'Красная Поляна: Русские Альпы',
+    short_desc: 'Три курорта: Роза Хутор, Газпром, Красная Поляна. Горы, канатки и казино.',
+    description_md: `
+      ## Чего ожидать
+      Поездка в горный кластер по новой живописной дороге. Вы увидите лучшие горнолыжные курорты России, подниметесь на пики и вдохнете чистейший горный воздух.
+
+      ## Программа
+      * Ущелье Ахцу (старая дорога).
+      * Курорт Красная Поляна (бывший Горки Город).
+      * Роза Хутор: Ратуша, набережная Мзымты.
+      * ГТЦ Газпром: Лаура и Альпика.
+      * Скайпарк (по желанию).
+    `,
+    region: TourRegion.KRASNAYA_POLYANA,
+    type: TourType.TOUR,
+    difficulty: TourDifficulty.EASY,
+    duration_hours: 8,
+    price_from: 9000,
+    currency: 'RUB',
+    cover_image: 'https://picsum.photos/800/600?random=3',
+    gallery_images: ['https://picsum.photos/800/600?random=31'],
+    tags: ['Горы', 'Панорамы', 'Лыжи'],
+    is_active: true,
+  },
+
+  // PHOTO TOURS
+  {
+    id: '4',
+    slug: 'cabriolet-photo-tour',
+    title: 'Фото-тур на кабриолете',
+    short_desc: 'Peugeot 308 CC, ветер в волосах и профессиональные фото на ваш телефон.',
+    description_md: `
+      ## Чего ожидать
+      Идеальный вариант для контента, романтических свиданий или просто красивой прогулки. Крыша открывается за 20 секунд!
+
+      ## Маршрут
+      * Живописная дорога на Красную Поляну.
+      * Смотровая площадка ущелья Ахцу.
+      * Старая Краснополянская дорога («Скальник»).
+      * Закат у моря в Имеретинской бухте.
+
+      ## Бонус
+      Я сделаю для вас профессиональные фото на ваш телефон и подскажу лучшие ракурсы.
+    `,
+    region: TourRegion.SOCHI,
+    type: TourType.PHOTO_TOUR,
+    difficulty: TourDifficulty.EASY,
+    duration_hours: 4,
+    price_from: 7000,
+    currency: 'RUB',
+    cover_image: 'https://picsum.photos/800/600?random=4',
+    gallery_images: ['https://picsum.photos/800/600?random=41'],
+    tags: ['Фото', 'Кабриолет', 'Романтика'],
+    is_active: true,
+  },
+
+  // TRANSFERS
+  {
+    id: '5',
+    slug: 'vip-transfer-airport-sochi',
+    title: 'VIP Трансфер: Аэропорт — Сочи',
+    short_desc: 'Встреча с табличкой, помощь с багажом, Mercedes E-Class или V-Class.',
+    description_md: `
+      ## Комфорт и статус
+      Встречу вас в аэропорту Сочи (AER) и доставлю в отель в центре Сочи, Сириусе или Красной Поляне.
+
+      * **Автомобили:** Mercedes-Benz E-Class (седан) или V-Class (минивэн).
+      * **Сервис:** Вода, Wi-Fi, детские кресла, помощь с багажом.
+      * **Цена:** Фиксированная, известна заранее.
+
+      ## Направления
+      * Аэропорт → Олимпийский парк / Сириус
+      * Аэропорт → Центр Сочи
+      * Аэропорт → Красная Поляна
+      * Аэропорт → Абхазия (Гагра, Пицунда, Сухум)
+    `,
+    region: TourRegion.SOCHI,
+    type: TourType.TRANSFER,
+    difficulty: TourDifficulty.EASY,
+    duration_hours: 1,
+    price_from: 2000,
+    currency: 'RUB',
+    cover_image: 'https://picsum.photos/800/600?random=5',
+    gallery_images: ['https://picsum.photos/800/600?random=51'],
+    tags: ['Трансфер', 'VIP', 'Аэропорт'],
     is_active: true,
   },
   {
-    "id": "2",
-    "slug": "gagra-pitsunda",
-    "title": "Гагра и Пицунда — два лица побережья",
-    "short_desc": "Контраст эпох: элегантная Гагра и древняя Пицунда с реликтовыми соснами и чистейшим морем.",
-    "description_md": `
-      ## Чего ожидать
-      Маршрут для тех, кто хочет понять историю Абхазии. Гагра принца Ольденбургского и древний храм Пицунды X века.
+    id: '6',
+    slug: 'business-chauffeur',
+    title: 'Бизнес-сопровождение',
+    short_desc: 'Аренда авто с водителем на день. Для деловых встреч и мероприятий.',
+    description_md: `
+      ## Ваш личный водитель
+      Почасовая аренда или полный бизнес-день (до 10 часов). Решение любых логистических задач.
 
-      ## Программа
-      * 08:30 — Выезд.
-      * 10:30 — Старая Гагра: Колоннада, ресторан Гагрипш.
-      * 13:00 — Пицундский храм и орган.
-      * 14:30 — Реликтовая сосновая роща и пляж.
-      * 18:00 — Возвращение.
+      * Пунктуальность и конфиденциальность.
+      * Дресс-код.
+      * Чистый автомобиль бизнес-класса.
+      * Помощь в организации (бронирование ресторанов, советы).
     `,
-    "region": TourRegion.ABKHAZIA,
-    "type": TourType.TOUR,
-    "difficulty": TourDifficulty.EASY,
-    "duration_hours": 9,
-    "price_from": 4000,
-    "currency": "RUB",
-    "cover_image": "https://picsum.photos/800/600?random=2",
-    "gallery_images": ["https://picsum.photos/800/600?random=21", "https://picsum.photos/800/600?random=22"],
-    "tags": ["История", "Море", "Архитектура"],
-    "is_active": true
-  },
-  {
-    "id": "3",
-    "slug": "sochi-skypark",
-    "title": "SkyPark Сочи: адреналин над ущельем",
-    "short_desc": "Самый длинный подвесной мост в мире, банджи-джампинг и качели над пропастью для смелых.",
-    "description_md": `
-      ## Чего ожидать
-      Испытание высотой. Прогулка по мосту Скайбридж на высоте 207 метров над рекой Мзымта.
-
-      ## Программа
-      * 10:00 — Выезд.
-      * 11:00 — Проход по мосту Скайбридж.
-      * 12:00 — Свободное время для аттракционов (банджи, качели).
-      * 16:00 — Возвращение.
-    `,
-    "region": TourRegion.SOCHI,
-    "type": TourType.TOUR,
-    "difficulty": TourDifficulty.MEDIUM,
-    "duration_hours": 6,
-    "price_from": 3500,
-    "currency": "RUB",
-    "cover_image": "https://picsum.photos/800/600?random=3",
-    "gallery_images": ["https://picsum.photos/800/600?random=31", "https://picsum.photos/800/600?random=32"],
-    "tags": ["Экстрим", "Приключение", "Мост"],
-    "is_active": true
-  },
-  {
-    "id": "4",
-    "slug": "rosa-khutor-panorama",
-    "title": "Роза Хутор — на вершину Кавказа",
-    "short_desc": "Подъём на высоту 2320 метров. Заснеженные вершины, альпийские луга и лучшие панорамы.",
-    "description_md": `
-      ## Чего ожидать
-      Три очереди канатной дороги поднимут вас от уровня моря к вершинам. Идеально для семей.
-
-      ## Программа
-      * 09:00 — Выезд.
-      * 10:30 — Подъем на Роза Пик (2320 м).
-      * 13:00 — Обед в Олимпийской деревне.
-      * 16:00 — Прогулка по набережной Мзымты.
-      * 18:00 — Возвращение.
-    `,
-    "region": TourRegion.KRASNAYA_POLYANA,
-    "type": TourType.TOUR,
-    "difficulty": TourDifficulty.EASY,
-    "duration_hours": 8,
-    "price_from": 4500,
-    "currency": "RUB",
-    "cover_image": "https://picsum.photos/800/600?random=4",
-    "gallery_images": ["https://picsum.photos/800/600?random=41"],
-    "tags": ["Горы", "Канатная дорога", "Панорамы"],
-    "is_active": true
-  },
-  {
-    "id": "5",
-    "slug": "olympic-park-evening",
-    "title": "Олимпийский парк: шоу фонтанов",
-    "short_desc": "Вечерняя магия Сочи: поющие фонтаны, чаша олимпийского огня и футуристические арены.",
-    "description_md": `
-      ## Чего ожидать
-      Грандиозное свето-музыкальное шоу фонтанов. Струи воды высотой до 70 метров танцуют под музыку.
-
-      ## Программа
-      * 18:00 — Выезд.
-      * 18:30 — Прогулка по объектам Олимпиады-2014.
-      * 20:00 — Занимаем места у фонтана.
-      * 21:00 — Шоу фонтанов.
-      * 22:15 — Возвращение.
-    `,
-    "region": TourRegion.OLYMPIC_PARK,
-    "type": TourType.EXCURSION,
-    "difficulty": TourDifficulty.EASY,
-    "duration_hours": 4,
-    "price_from": 2000,
-    "currency": "RUB",
-    "cover_image": "https://picsum.photos/800/600?random=5",
-    "gallery_images": ["https://picsum.photos/800/600?random=51"],
-    "tags": ["Вечерний", "Шоу", "Семейный"],
-    "is_active": true
-  },
-  {
-    "id": "6",
-    "slug": "33-waterfalls",
-    "title": "33 водопада — сокровище Лазаревского",
-    "short_desc": "Каскад водопадов в самшитовом лесу. Поездка на внедорожниках и дегустация мёда.",
-    "description_md": `
-      ## Чего ожидать
-      Приключение на грузовиках ГАЗ-66 по руслу реки и прогулка по деревянным мостикам вдоль каскада водопадов.
-
-      ## Программа
-      * 09:00 — Выезд.
-      * 10:30 — Пересадка на вездеходы.
-      * 11:00 — Прогулка к водопадам.
-      * 13:30 — Обед и чайные плантации.
-      * 17:00 — Возвращение.
-    `,
-    "region": TourRegion.SOCHI,
-    "type": TourType.TOUR,
-    "difficulty": TourDifficulty.EASY,
-    "duration_hours": 7,
-    "price_from": 3500,
-    "currency": "RUB",
-    "cover_image": "https://picsum.photos/800/600?random=6",
-    "gallery_images": ["https://picsum.photos/800/600?random=61"],
-    "tags": ["Природа", "Водопады", "Джиппинг"],
-    "is_active": true
+    region: TourRegion.SOCHI,
+    type: TourType.TRANSFER,
+    difficulty: TourDifficulty.EASY,
+    duration_hours: 8,
+    price_from: 15000,
+    currency: 'RUB',
+    cover_image: 'https://picsum.photos/800/600?random=6',
+    gallery_images: [],
+    tags: ['Бизнес', 'Аренда', 'Консьерж'],
+    is_active: true,
   }
 ];
 
@@ -216,4 +229,6 @@ export const REGIONS_LABELS: Record<TourRegion, string> = {
 export const TYPES_LABELS: Record<TourType, string> = {
   [TourType.TOUR]: 'Тур',
   [TourType.EXCURSION]: 'Экскурсия',
+  [TourType.TRANSFER]: 'Трансфер',
+  [TourType.PHOTO_TOUR]: 'Фото-тур',
 };
