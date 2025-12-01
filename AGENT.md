@@ -85,6 +85,9 @@ See `CONTRIBUTING.md` for the full Git and PR workflow. If it is temporarily mis
 *   **Context:** "This affects `lib/booking.ts` (schema) and `components/booking/BookingForm.tsx` (UI)."
 *   **Constraints:** "Make it optional. Max 100 chars."
 
+### Standard Commands
+*   **`/autoupdate`**: Immediately initiates the **Auto-Update Cycle** defined in `AUTOUPDATE.md`. The agent should switch to the "Auto-Update" mode, perform Recon, and propose a Maintenance Plan.
+
 ### For AI Responding
 AI responses SHOULD follow this structure:
 
