@@ -123,6 +123,7 @@ AI responses SHOULD follow this structure:
 This document is the main operational guide for AI agents. It sits at the center of a small doc “constellation”:
 
 - **README.md** – High-level project overview, architecture, stack, and setup instructions.
+- **AUTOUPDATE.md** – Canonical playbook for ongoing maintenance and auto-update cycles.
 - **CONTRIBUTING.md** – Git, branch, and PR workflow for humans and AI-assisted contributions.
 - **INDEX.md** (if present) – Entry point into the wider ApsnyTravel documentation set.
 - **GRAPH.md** (if present) – High-level graph/relationship view of key domain entities and services.
@@ -130,4 +131,5 @@ This document is the main operational guide for AI agents. It sits at the center
 
 AI agents should:
 - Start with `README.md` → then `AGENT.md` → then `CONTRIBUTING.md`.
+- Consult `AUTOUPDATE.md` for maintenance tasks.
 - Use `INDEX.md`, `GRAPH.md`, and `docs/` when they need deeper architectural or domain context.

@@ -10,6 +10,8 @@ The application follows a **Mock-First** architecture. The frontend is capable o
 graph TD
     subgraph Client [Frontend Application]
         UI[Pages & Components<br>(No src directory)]
+        AutoUpdate[AUTOUPDATE.md<br>(Maintenance Playbook)]
+        style AutoUpdate fill:#f9f,stroke:#333,stroke-dasharray: 5 5
 
         subgraph DataLayer [Data Access Layer]
             TourService["lib/api.ts<br>(Tour & Review Data)"]
