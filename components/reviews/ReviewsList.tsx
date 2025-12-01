@@ -8,7 +8,9 @@ interface ReviewsListProps {
 
 export function ReviewsList({ reviews }: ReviewsListProps) {
   if (!reviews.length) {
-    return <p className="text-sm text-slate-500">Пока нет отзывов об этом туре.</p>;
+    return (
+      <p className="text-sm text-slate-500">Пока нет отзывов об этом туре.</p>
+    );
   }
 
   return (

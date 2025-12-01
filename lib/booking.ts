@@ -33,7 +33,14 @@ export const bookingPayloadSchema = z.object({
   client_contact: z
     .string()
     .transform((val) => val.replace(/[\s\-()]/g, ''))
-    .pipe(z.string().regex(INTERNATIONAL_PHONE_REGEX, 'Введите номер в международном формате, например +79990000000')),
+    .pipe(
+      z
+        .string()
+        .regex(
+          INTERNATIONAL_PHONE_REGEX,
+          'Введите номер в международном формате, например +79990000000',
+        ),
+    ),
   desired_date: futureDateSchema,
   pax: z.number().min(1, 'Минимум 1 человек').max(20, 'Максимум 20 человек'),
   client_message: z.string().max(500, 'Сообщение слишком длинное').optional(),
@@ -60,14 +67,19 @@ export interface BookingSubmissionResult {
   response?: unknown;
 }
 
-export async function submitBookingRequest(payload: BookingPayload): Promise<BookingSubmissionResult> {
+export async function submitBookingRequest(
+  payload: BookingPayload,
+): Promise<BookingSubmissionResult> {
   bookingPayloadSchema.parse(payload);
 
   const endpoint = import.meta.env.VITE_BOOKING_ENDPOINT;
 
   if (!endpoint) {
     if (import.meta.env.PROD) {
-      throw new BookingSubmissionError('Не настроен endpoint для бронирования', 500);
+      throw new BookingSubmissionError(
+        'Не настроен endpoint для бронирования',
+        500,
+      );
     }
 
     console.warn('VITE_BOOKING_ENDPOINT отсутствует. Возвращаем мок-ответ.');
@@ -82,7 +94,9 @@ export async function submitBookingRequest(payload: BookingPayload): Promise<Boo
     },
     body: JSON.stringify(payload),
   }).catch((error: unknown) => {
-    throw new BookingSubmissionError((error as Error)?.message || 'Network error');
+    throw new BookingSubmissionError(
+      (error as Error)?.message || 'Network error',
+    );
   });
 
   if (!response.ok) {

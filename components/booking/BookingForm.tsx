@@ -5,7 +5,11 @@ import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Loader2, CheckCircle } from 'lucide-react';
-import { bookingFormSchema, BookingFormValues, submitBookingRequest } from '../../lib/booking';
+import {
+  bookingFormSchema,
+  BookingFormValues,
+  submitBookingRequest,
+} from '../../lib/booking';
 
 interface BookingFormProps {
   tourTitle: string;
@@ -36,7 +40,9 @@ export function BookingForm({ tourTitle }: BookingFormProps) {
       await submitBookingRequest({ ...data, tourTitle });
       setIsSuccess(true);
     } catch (error) {
-      const message = (error as Error)?.message || 'Не удалось отправить заявку. Попробуйте снова.';
+      const message =
+        (error as Error)?.message ||
+        'Не удалось отправить заявку. Попробуйте снова.';
       console.error('Booking submission failed:', error);
       setErrorMessage(message);
     } finally {
@@ -48,9 +54,12 @@ export function BookingForm({ tourTitle }: BookingFormProps) {
     return (
       <div className="rounded-lg border border-teal-100 bg-teal-50 p-6 text-center">
         <CheckCircle className="mx-auto h-12 w-12 text-teal-600 mb-4" />
-        <h3 className="text-xl font-bold text-teal-900 mb-2">Заявка отправлена!</h3>
+        <h3 className="text-xl font-bold text-teal-900 mb-2">
+          Заявка отправлена!
+        </h3>
         <p className="text-teal-700">
-          Спасибо, {tourTitle} ждет вас. Александр свяжется с вами в течение 5 минут (в рабочее время).
+          Спасибо, {tourTitle} ждет вас. Александр свяжется с вами в течение 5
+          минут (в рабочее время).
         </p>
       </div>
     );
@@ -59,7 +68,10 @@ export function BookingForm({ tourTitle }: BookingFormProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div>
-        <label htmlFor="client_name" className="mb-1 block text-sm font-medium text-slate-700">
+        <label
+          htmlFor="client_name"
+          className="mb-1 block text-sm font-medium text-slate-700"
+        >
           Ваше имя *
         </label>
         <Input
@@ -69,12 +81,17 @@ export function BookingForm({ tourTitle }: BookingFormProps) {
           className={errors.client_name ? 'border-red-500' : ''}
         />
         {errors.client_name && (
-          <p className="mt-1 text-xs text-red-500">{errors.client_name.message}</p>
+          <p className="mt-1 text-xs text-red-500">
+            {errors.client_name.message}
+          </p>
         )}
       </div>
 
       <div>
-        <label htmlFor="client_contact" className="mb-1 block text-sm font-medium text-slate-700">
+        <label
+          htmlFor="client_contact"
+          className="mb-1 block text-sm font-medium text-slate-700"
+        >
           Телефон в международном формате *
         </label>
         <Input
@@ -84,13 +101,18 @@ export function BookingForm({ tourTitle }: BookingFormProps) {
           className={errors.client_contact ? 'border-red-500' : ''}
         />
         {errors.client_contact && (
-          <p className="mt-1 text-xs text-red-500">{errors.client_contact.message}</p>
+          <p className="mt-1 text-xs text-red-500">
+            {errors.client_contact.message}
+          </p>
         )}
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label htmlFor="desired_date" className="mb-1 block text-sm font-medium text-slate-700">
+          <label
+            htmlFor="desired_date"
+            className="mb-1 block text-sm font-medium text-slate-700"
+          >
             Дата (будущее)
           </label>
           <Input
@@ -100,11 +122,16 @@ export function BookingForm({ tourTitle }: BookingFormProps) {
             className={errors.desired_date ? 'border-red-500' : ''}
           />
           {errors.desired_date && (
-            <p className="mt-1 text-xs text-red-500">{errors.desired_date.message}</p>
+            <p className="mt-1 text-xs text-red-500">
+              {errors.desired_date.message}
+            </p>
           )}
         </div>
         <div>
-          <label htmlFor="pax" className="mb-1 block text-sm font-medium text-slate-700">
+          <label
+            htmlFor="pax"
+            className="mb-1 block text-sm font-medium text-slate-700"
+          >
             Кол-во человек *
           </label>
           <Input
@@ -122,7 +149,10 @@ export function BookingForm({ tourTitle }: BookingFormProps) {
       </div>
 
       <div>
-        <label htmlFor="client_message" className="mb-1 block text-sm font-medium text-slate-700">
+        <label
+          htmlFor="client_message"
+          className="mb-1 block text-sm font-medium text-slate-700"
+        >
           Комментарий
         </label>
         <Textarea
@@ -131,7 +161,9 @@ export function BookingForm({ tourTitle }: BookingFormProps) {
           {...register('client_message')}
         />
         {errors.client_message && (
-          <p className="mt-1 text-xs text-red-500">{errors.client_message.message}</p>
+          <p className="mt-1 text-xs text-red-500">
+            {errors.client_message.message}
+          </p>
         )}
       </div>
 

@@ -16,7 +16,9 @@ export function Catalog() {
     path: '/catalog',
   });
 
-  const [selectedRegion, setSelectedRegion] = useState<TourRegion | 'all'>('all');
+  const [selectedRegion, setSelectedRegion] = useState<TourRegion | 'all'>(
+    'all',
+  );
   const [selectedType, setSelectedType] = useState<TourType | 'all'>('all');
 
   const {
@@ -33,7 +35,8 @@ export function Catalog() {
 
   const filteredTours = useMemo(() => {
     return tours.filter((tour) => {
-      const regionMatch = selectedRegion === 'all' || tour.region === selectedRegion;
+      const regionMatch =
+        selectedRegion === 'all' || tour.region === selectedRegion;
       const typeMatch = selectedType === 'all' || tour.type === selectedType;
       return regionMatch && typeMatch;
     });
@@ -48,11 +51,15 @@ export function Catalog() {
         <select
           className="h-10 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
           value={selectedRegion}
-          onChange={(e) => setSelectedRegion(e.target.value as TourRegion | 'all')}
+          onChange={(e) =>
+            setSelectedRegion(e.target.value as TourRegion | 'all')
+          }
         >
           <option value="all">Все регионы</option>
           {Object.entries(REGIONS_LABELS).map(([key, label]) => (
-            <option key={key} value={key}>{label}</option>
+            <option key={key} value={key}>
+              {label}
+            </option>
           ))}
         </select>
 
@@ -63,14 +70,19 @@ export function Catalog() {
         >
           <option value="all">Все типы</option>
           {Object.entries(TYPES_LABELS).map(([key, label]) => (
-            <option key={key} value={key}>{label}</option>
+            <option key={key} value={key}>
+              {label}
+            </option>
           ))}
         </select>
-        
+
         {(selectedRegion !== 'all' || selectedType !== 'all') && (
           <Button
             variant="ghost"
-            onClick={() => { setSelectedRegion('all'); setSelectedType('all'); }}
+            onClick={() => {
+              setSelectedRegion('all');
+              setSelectedType('all');
+            }}
             className="sm:w-auto w-full"
           >
             Сбросить
@@ -88,7 +100,10 @@ export function Catalog() {
       {isError && (
         <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">
           <div className="flex items-start justify-between gap-3">
-            <p>{(error as Error)?.message || 'Не удалось загрузить туры. Попробуйте обновить страницу.'}</p>
+            <p>
+              {(error as Error)?.message ||
+                'Не удалось загрузить туры. Попробуйте обновить страницу.'}
+            </p>
             <Button variant="outline" size="sm" onClick={() => refetch()}>
               Повторить
             </Button>
@@ -107,8 +122,16 @@ export function Catalog() {
             </div>
           ) : (
             <div className="text-center py-20">
-              <p className="text-lg text-slate-500">Туров по выбранным критериям не найдено.</p>
-              <Button variant="link" onClick={() => { setSelectedRegion('all'); setSelectedType('all'); }}>
+              <p className="text-lg text-slate-500">
+                Туров по выбранным критериям не найдено.
+              </p>
+              <Button
+                variant="link"
+                onClick={() => {
+                  setSelectedRegion('all');
+                  setSelectedType('all');
+                }}
+              >
                 Показать все туры
               </Button>
             </div>

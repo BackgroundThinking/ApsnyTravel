@@ -14,7 +14,12 @@ import { branding } from '@/lib/branding';
 
 export function TourDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const { data: tour, isLoading, isError, error } = useQuery<Tour>({
+  const {
+    data: tour,
+    isLoading,
+    isError,
+    error,
+  } = useQuery<Tour>({
     queryKey: ['tour', slug],
     queryFn: () => fetchTourBySlug(slug ?? ''),
     enabled: Boolean(slug),
@@ -48,9 +53,13 @@ export function TourDetail() {
   if (isError || !tour) {
     return (
       <div className="container mx-auto px-4 py-20 text-center">
-        <h1 className="mb-4 text-2xl font-bold text-slate-900">Тур не найден</h1>
+        <h1 className="mb-4 text-2xl font-bold text-slate-900">
+          Тур не найден
+        </h1>
         {isError && (
-          <p className="mb-4 text-sm text-red-500">{(error as Error)?.message ?? 'Ошибка загрузки данных'}</p>
+          <p className="mb-4 text-sm text-red-500">
+            {(error as Error)?.message ?? 'Ошибка загрузки данных'}
+          </p>
         )}
         <Button asChild>
           <Link to="/catalog">Вернуться в каталог</Link>
@@ -63,7 +72,10 @@ export function TourDetail() {
     <div className="min-h-screen bg-slate-50 pb-12">
       <div className="border-b border-slate-200 bg-white">
         <div className="container mx-auto px-4 py-4">
-          <Link to="/catalog" className="inline-flex items-center text-sm text-slate-500 hover:text-teal-600">
+          <Link
+            to="/catalog"
+            className="inline-flex items-center text-sm text-slate-500 hover:text-teal-600"
+          >
             <ArrowLeft className="mr-1 h-4 w-4" />
             Назад в каталог
           </Link>
@@ -81,7 +93,10 @@ export function TourDetail() {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div className="space-y-8 lg:col-span-2">
-            <TourContent description={tour.description_md} galleryImages={tour.gallery_images} />
+            <TourContent
+              description={tour.description_md}
+              galleryImages={tour.gallery_images}
+            />
             <ReviewsPanel tourId={tour.id} />
           </div>
           <BookingSidebar priceFrom={tour.price_from} tourTitle={tour.title} />

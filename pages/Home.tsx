@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { ArrowRight, Loader2, ShieldCheck, Star, Users, Camera } from 'lucide-react';
+import {
+  ArrowRight,
+  Loader2,
+  ShieldCheck,
+  Star,
+  Users,
+  Camera,
+} from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { TourCard } from '../components/tours/TourCard';
 import { fetchTours } from '../lib/api';
@@ -34,9 +41,9 @@ export function Home() {
       {/* Hero Section */}
       <section className="relative bg-slate-900 py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-40">
-          <img 
-            src="https://picsum.photos/1920/1080?random=hero" 
-            alt="Abkhazia Landscape" 
+          <img
+            src="https://picsum.photos/1920/1080?random=hero"
+            alt="Abkhazia Landscape"
             className="h-full w-full object-cover"
           />
         </div>
@@ -45,13 +52,19 @@ export function Home() {
             «Влюбляю в Абхазию!»
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-200 mb-10">
-             Авторские туры по Абхазии, Сочи и Красной Поляне. VIP-трансфер. Более 30 лет опыта.
+            Авторские туры по Абхазии, Сочи и Красной Поляне. VIP-трансфер.
+            Более 30 лет опыта.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button asChild size="lg" className="text-lg px-8">
               <Link to="/catalog">Выбрать маршрут</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="bg-transparent text-white border-white hover:bg-white/10 hover:text-white">
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="bg-transparent text-white border-white hover:bg-white/10 hover:text-white"
+            >
               <Link to="/about">О гиде и автопарке</Link>
             </Button>
           </div>
@@ -68,7 +81,8 @@ export function Home() {
               </div>
               <h3 className="font-bold text-slate-900">LUX-сервис</h3>
               <p className="text-sm text-slate-600 mt-2">
-                Высокие стандарты. Безопасность и комфорт на Mercedes E & V Class.
+                Высокие стандарты. Безопасность и комфорт на Mercedes E & V
+                Class.
               </p>
             </div>
             <div className="flex flex-col items-center">
@@ -86,16 +100,18 @@ export function Home() {
               </div>
               <h3 className="font-bold text-slate-900">Фото в подарок</h3>
               <p className="text-sm text-slate-600 mt-2">
-                Профессиональная фотосессия на ваш телефон — бесплатно к каждому туру.
+                Профессиональная фотосессия на ваш телефон — бесплатно к каждому
+                туру.
               </p>
             </div>
-             <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center">
               <div className="mb-4 rounded-full bg-teal-50 p-3">
                 <Star className="h-8 w-8 text-teal-600" />
               </div>
               <h3 className="font-bold text-slate-900">Без ловушек</h3>
               <p className="text-sm text-slate-600 mt-2">
-                Никаких навязчивых дегустаций и скрытых комиссий. Честный подход.
+                Никаких навязчивых дегустаций и скрытых комиссий. Честный
+                подход.
               </p>
             </div>
           </div>
@@ -107,11 +123,18 @@ export function Home() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-10">
             <div>
-                 <h2 className="text-3xl font-bold text-slate-900">Популярные направления</h2>
-                 <p className="text-slate-500 mt-2">Более 100 авторских маршрутов на любой вкус</p>
+              <h2 className="text-3xl font-bold text-slate-900">
+                Популярные направления
+              </h2>
+              <p className="text-slate-500 mt-2">
+                Более 100 авторских маршрутов на любой вкус
+              </p>
             </div>
 
-            <Link to="/catalog" className="hidden sm:flex items-center text-teal-600 font-medium hover:text-teal-700">
+            <Link
+              to="/catalog"
+              className="hidden sm:flex items-center text-teal-600 font-medium hover:text-teal-700"
+            >
               Смотреть все <ArrowRight className="ml-1 h-4 w-4" />
             </Link>
           </div>
@@ -125,12 +148,14 @@ export function Home() {
 
           {isError && (
             <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">
-              {(error as Error)?.message || 'Не удалось загрузить туры. Попробуйте позже.'}
+              {(error as Error)?.message ||
+                'Не удалось загрузить туры. Попробуйте позже.'}
             </div>
           )}
 
-          {!isLoading && !isError && (
-            featuredTours.length ? (
+          {!isLoading &&
+            !isError &&
+            (featuredTours.length ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {featuredTours.map((tour) => (
                   <TourCard key={tour.id} tour={tour} />
@@ -138,10 +163,10 @@ export function Home() {
               </div>
             ) : (
               <div className="rounded-lg border border-slate-200 bg-white p-6 text-center text-slate-600">
-                Туры временно недоступны. Загляните позже или свяжитесь с нами напрямую.
+                Туры временно недоступны. Загляните позже или свяжитесь с нами
+                напрямую.
               </div>
-            )
-          )}
+            ))}
 
           <div className="mt-8 text-center sm:hidden">
             <Button asChild variant="outline" className="w-full">
@@ -153,36 +178,50 @@ export function Home() {
 
       {/* Transfer Teaser */}
       <section className="py-16 bg-white border-t border-slate-100">
-         <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">Нужен трансфер из аэропорта?</h2>
-            <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-                Встретим вас с табличкой, поможем с багажом и с комфортом доставим в отель.
-                Фиксированные тарифы от 999 руб.
-            </p>
-            <div className="flex justify-center gap-4">
-                 <Button asChild variant="default" size="lg">
-                    <Link to="/transfers">Узнать тарифы</Link>
-                </Button>
-            </div>
-         </div>
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-slate-900 mb-4">
+            Нужен трансфер из аэропорта?
+          </h2>
+          <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
+            Встретим вас с табличкой, поможем с багажом и с комфортом доставим в
+            отель. Фиксированные тарифы от 999 руб.
+          </p>
+          <div className="flex justify-center gap-4">
+            <Button asChild variant="default" size="lg">
+              <Link to="/transfers">Узнать тарифы</Link>
+            </Button>
+          </div>
+        </div>
       </section>
 
       {/* About Teaser */}
       <section className="py-16 bg-slate-900 text-white">
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
           <div className="w-full md:w-1/2 relative aspect-video rounded-xl overflow-hidden bg-slate-800">
-             <img src="https://picsum.photos/800/600?grayscale" alt="Guide Alexander" className="object-cover h-full w-full opacity-80" />
+            <img
+              src="https://picsum.photos/800/600?grayscale"
+              alt="Guide Alexander"
+              className="object-cover h-full w-full opacity-80"
+            />
           </div>
           <div className="w-full md:w-1/2">
-            <h2 className="text-3xl font-bold mb-4">ApsnyTravel — это больше, чем такси</h2>
+            <h2 className="text-3xl font-bold mb-4">
+              ApsnyTravel — это больше, чем такси
+            </h2>
             <p className="text-lg text-slate-300 mb-6">
-              Я — Александр, ваш персональный гид и водитель. Я родился здесь и знаю каждый уголок.
-              Со мной вы увидите Абхазию и Сочи такими, какими их люблю я.
+              Я — Александр, ваш персональный гид и водитель. Я родился здесь и
+              знаю каждый уголок. Со мной вы увидите Абхазию и Сочи такими,
+              какими их люблю я.
             </p>
             <p className="text-slate-400 mb-8">
-              Моя цель — показать вам настоящий Кавказ, не «открыточный», а живой и гостеприимный. Без спешки, без толп туристов, с душой.
+              Моя цель — показать вам настоящий Кавказ, не «открыточный», а
+              живой и гостеприимный. Без спешки, без толп туристов, с душой.
             </p>
-            <Button asChild variant="outline" className="border-white text-white hover:bg-white hover:text-slate-900">
+            <Button
+              asChild
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-slate-900"
+            >
               <Link to="/about">Подробнее обо мне</Link>
             </Button>
           </div>

@@ -17,17 +17,42 @@ export function Footer() {
               {branding.defaultDescription}
             </p>
           </div>
-          
+
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Навигация</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/catalog" className="hover:text-white transition-colors">Туры</Link></li>
-              <li><Link to="/about" className="hover:text-white transition-colors">О гиде</Link></li>
-              <li><Link to="/faq" className="hover:text-white transition-colors">Вопросы</Link></li>
-              <li><Link to="/contacts" className="hover:text-white transition-colors">Контакты</Link></li>
+              <li>
+                <Link
+                  to="/catalog"
+                  className="hover:text-white transition-colors"
+                >
+                  Туры
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/about"
+                  className="hover:text-white transition-colors"
+                >
+                  О гиде
+                </Link>
+              </li>
+              <li>
+                <Link to="/faq" className="hover:text-white transition-colors">
+                  Вопросы
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contacts"
+                  className="hover:text-white transition-colors"
+                >
+                  Контакты
+                </Link>
+              </li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Связаться</h3>
             <ul className="space-y-2 text-sm">
@@ -55,7 +80,7 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        
+
         <div className="border-t border-slate-800 mt-8 pt-8 text-sm text-center text-slate-500">
           <p>© {new Date().getFullYear()} ApsnyTravel. Все права защищены.</p>
         </div>

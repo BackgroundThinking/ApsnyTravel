@@ -55,31 +55,42 @@ graph TD
 ## Domain Entities
 
 ### 1. Tour (`types.ts`)
+
 The core product entity. Represents a guided tour, excursion, or activity.
+
 - **Key Fields**: `id`, `slug`, `region`, `type`, `price_from`, `is_active`.
 - **Source**: `constants.ts` (Mock) or `/tours` (API).
 
 ### 2. Review (`types.ts`)
+
 Customer feedback attached to a specific tour.
+
 - **Key Fields**: `tourId`, `rating`, `comment`, `author`.
 - **Source**: `constants.ts` (Mock) or `/reviews` (API).
 
 ### 3. Booking (`lib/booking.ts`)
+
 A transaction request from a user.
+
 - **Key Fields**: `client_name`, `client_contact`, `desired_date`, `tourTitle`.
 - **Validation**: Zod schema (`bookingPayloadSchema`).
 
 ### 4. Branding (`lib/branding.ts`)
+
 Single source of truth for contact info, social links, and site metadata.
 
 ## Service Boundaries
 
 ### Tour Service (`lib/api.ts`)
+
 Abstracts data fetching.
+
 - **Mock Mode**: Returns data from `constants.ts` with artificial latency.
 - **Remote Mode**: Active if `VITE_API_URL` is set. Fetches from external API.
 
 ### Booking Service (`lib/booking.ts`)
+
 Handles lead generation.
+
 - **Validation**: Enforces phone format and future dates.
 - **Submission**: POSTs to `VITE_BOOKING_ENDPOINT` if defined; otherwise simulates success.
