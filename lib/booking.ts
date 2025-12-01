@@ -12,7 +12,9 @@ const futureDateSchema = z
     if (Number.isNaN(parsed.getTime())) return false;
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    return parsed.getTime() > today.getTime();
+    // Adjust parsed date to local midnight to compare correctly
+    const parsedLocal = new Date(parsed.getUTCFullYear(), parsed.getUTCMonth(), parsed.getUTCDate());
+    return parsedLocal.getTime() >= today.getTime();
   }, 'Дата должна быть в будущем');
 
 export const bookingPayloadSchema = z.object({
