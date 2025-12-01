@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { bookingPayloadSchema } from './lib/booking';
+import { bookingPayloadSchema } from './booking';
 
 describe('Booking Validation', () => {
     it('should validate future dates correctly', () => {
