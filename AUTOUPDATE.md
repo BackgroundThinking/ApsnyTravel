@@ -4,6 +4,10 @@ This document is the **canonical playbook** for ongoing maintenance and **AI-ass
 
 It defines how to keep the codebase healthy, the content fresh, and the documentation aligned with reality, while strictly respecting the project's proprietary nature and governance model.
 
+## Quick Start
+> **To start a maintenance cycle immediately:**
+> Type **`/autoupdate`** to @Jules or any attached AI agent.
+
 ## 1. Purpose & Scope
 
 **"Auto-Update"** in this context refers to a **semi-automated, human-supervised process** where AI agents (like @Jules) analyze the repo and propose updates to ensure:
