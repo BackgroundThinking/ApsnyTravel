@@ -6,6 +6,7 @@ import { Home } from './pages/Home';
 import { Catalog } from './pages/Catalog';
 import { TourDetail } from './pages/TourDetail';
 import { About } from './pages/About';
+import { Transfers } from './pages/Transfers';
 import { FAQ } from './pages/FAQ';
 import { Contacts } from './pages/Contacts';
 
@@ -20,6 +21,7 @@ function App() {
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/tours/:slug" element={<TourDetail />} />
             <Route path="/about" element={<About />} />
+            <Route path="/transfers" element={<Transfers />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/contacts" element={<Contacts />} />
           </Routes>

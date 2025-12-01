@@ -1,6 +1,8 @@
 import React from 'react';
 import { usePageMeta } from '../lib/seo';
-import { Car, CheckCircle2, Shield, Wifi, MapPin, Camera, FileCheck } from 'lucide-react';
+import { Car, CheckCircle2, Shield, Wifi, MapPin, Camera, Utensils, Award } from 'lucide-react';
+import { REVIEWS } from '../constants';
+import { Reviews } from '../components/Reviews';
 
 export function About() {
   usePageMeta({
@@ -24,38 +26,20 @@ export function About() {
             />
           </div>
           <div className="w-full md:w-2/3">
-            <h1 className="text-4xl font-bold text-slate-900 mb-4">Apsny Travel — с любовью к Кавказу</h1>
+            <h1 className="text-4xl font-bold text-slate-900 mb-4">ApsnyTravel — Влюбляю в Абхазию!</h1>
             <p className="text-xl text-slate-600 mb-6 font-medium">
-              «Я влюбляю людей в Абхазию, Сочи и Красную Поляну!»
+              Здравствуйте! Меня зовут Александр, но друзья и гости называют меня Алекс.
             </p>
             <div className="prose prose-slate text-slate-600">
               <p>
-                Меня зовут Александр. Я — основатель Apsny Travel, ваш личный водитель, гид и фотограф в одном лице.
-                За моими плечами более 30 лет опыта в сфере гостеприимства и вождения на сложных горных дорогах.
+                Я — основатель и идейный вдохновитель туристического агентства <strong>ApsnyTravel</strong> (Апсны-Трэвел).
               </p>
               <p>
-                Моя философия проста: каждый гость — это VIP. Я не вожу массовые экскурсии на автобусах.
-                Я создаю авторские путешествия, где нет места спешке, туристическим ловушкам и скрытым комиссиям.
+                <strong>Более 30 лет</strong> я работаю в сфере гостеприимства города Сочи и Абхазии, и за это время успел влюбить в эти удивительные места тысячи путешественников. Мой водительский стаж также превышает 30 лет, что гарантирует вам безопасность и комфорт на любых маршрутах.
               </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-              <div className="flex items-center gap-3">
-                <Shield className="h-6 w-6 text-teal-600 flex-shrink-0" />
-                <span className="text-sm font-medium text-slate-700">Безопасность и конфиденциальность</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <CheckCircle2 className="h-6 w-6 text-teal-600 flex-shrink-0" />
-                <span className="text-sm font-medium text-slate-700">Честные цены, никаких «ловушек»</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Car className="h-6 w-6 text-teal-600 flex-shrink-0" />
-                <span className="text-sm font-medium text-slate-700">VIP и LUX автопарк</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Wifi className="h-6 w-6 text-teal-600 flex-shrink-0" />
-                <span className="text-sm font-medium text-slate-700">Wi-Fi даже в Абхазии</span>
-              </div>
+              <p>
+                Я смогу показать вам Абхазию, Сочи и Красную Поляну совершенно с другой стороны — своими глазами, где каждый последующий тур будет интереснее предыдущего. Буду вашим проводником к самым неизведанным и таинственным локациям, покажу самые мощные места Силы этих удивительных земель.
+              </p>
             </div>
           </div>
         </div>
@@ -65,17 +49,34 @@ export function About() {
           <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">Наш автопарк</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
+            {/* Peugeot 308 CC */}
+            <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+              <img src="https://picsum.photos/800/600?random=car3" alt="Peugeot 308 CC" className="w-full h-48 object-cover" />
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Peugeot 308 CC</h3>
+                <p className="text-sm text-slate-500 mb-4">Кабриолет</p>
+                <p className="text-slate-600 text-sm mb-4">
+                  Идеально для романтических и фототуров! Почувствуйте свободу с открытой крышей или насладитесь комфортом в закрытом салоне.
+                </p>
+                <ul className="text-sm text-slate-500 space-y-1">
+                  <li>• 3 пассажира + 1 доп. место</li>
+                  <li>• Открытая/закрытая крыша</li>
+                  <li>• Идеально для фото</li>
+                </ul>
+              </div>
+            </div>
+
             {/* Mercedes E-Class */}
             <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
               <img src="https://picsum.photos/800/600?random=car1" alt="Mercedes E-Class" className="w-full h-48 object-cover" />
               <div className="p-6">
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Mercedes-Benz E-Class</h3>
-                <p className="text-sm text-slate-500 mb-4">Бизнес-седан (E 200 d)</p>
+                <p className="text-sm text-slate-500 mb-4">Бизнес-класс (E 200 d)</p>
                 <p className="text-slate-600 text-sm mb-4">
-                  Идеален для VIP-трансферов, деловых поездок и туров для пар. Комфорт бизнес-класса, тишина и плавность хода.
+                  Элегантный автомобиль бизнес-класса для комфортных поездок и трансферов.
                 </p>
                 <ul className="text-sm text-slate-500 space-y-1">
-                  <li>• До 3-4 пассажиров</li>
+                  <li>• 4 пассажирских места</li>
                   <li>• Климат-контроль</li>
                   <li>• Кожаный салон</li>
                 </ul>
@@ -89,74 +90,149 @@ export function About() {
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Mercedes-Benz V-Class</h3>
                 <p className="text-sm text-slate-500 mb-4">Минивэн бизнес-класса</p>
                 <p className="text-slate-600 text-sm mb-4">
-                  Для семей и небольших компаний. Просторный салон, панорамное остекление и удобная посадка.
+                  Просторный минивэн бизнес-класса для семейных поездок и групповых туров. Большие панорамные окна с качественной тонировкой.
                 </p>
                 <ul className="text-sm text-slate-500 space-y-1">
                   <li>• До 7 пассажиров</li>
-                  <li>• Столик для переговоров</li>
+                  <li>• Возможность мини-бара</li>
                   <li>• Вместительный багажник</li>
                 </ul>
               </div>
             </div>
 
-            {/* Peugeot 308 CC */}
-            <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
-              <img src="https://picsum.photos/800/600?random=car3" alt="Peugeot 308 CC" className="w-full h-48 object-cover" />
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-slate-900 mb-2">Peugeot 308 CC</h3>
-                <p className="text-sm text-slate-500 mb-4">Кабриолет</p>
-                <p className="text-slate-600 text-sm mb-4">
-                  Для ярких впечатлений и фотосессий. Крыша складывается за 20 секунд. Ветер, море и горы!
-                </p>
-                <ul className="text-sm text-slate-500 space-y-1">
-                  <li>• 3 взрослых + 1 детское место</li>
-                  <li>• Открытая/закрытая крыша</li>
-                  <li>• Фото-туры</li>
-                </ul>
-              </div>
-            </div>
-
           </div>
         </div>
 
-        {/* Philosophy Section */}
-        <div className="bg-slate-50 rounded-2xl p-8 md:p-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-8">Принципы работы</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex flex-col gap-3">
-              <div className="bg-white p-3 rounded-full w-fit shadow-sm">
-                 <MapPin className="h-6 w-6 text-teal-600" />
+        {/* Why Choose Us Section */}
+        <div className="bg-slate-50 rounded-2xl p-8 md:p-12 mb-16">
+          <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center">Почему выбирают ApsnyTravel</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 mt-1">
+                 <Award className="h-6 w-6 text-teal-600" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900">Нет туристическим ловушкам</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                Мы не заезжаем на навязанные дегустации меда или вина, где цены завышены втрое.
-                Я покажу вам места, где покупают и едят сами местные жители.
-              </p>
+              <div>
+                <h3 className="font-bold text-slate-900">Высокие стандарты LUX-сервиса</h3>
+                <p className="text-slate-600 text-sm mt-1">
+                  Испытайте на себе самые высокие стандарты качества предоставляемых услуг уровня Luxury.
+                </p>
+              </div>
             </div>
-            <div className="flex flex-col gap-3">
-              <div className="bg-white p-3 rounded-full w-fit shadow-sm">
+
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 mt-1">
+                 <CheckCircle2 className="h-6 w-6 text-teal-600" />
+              </div>
+              <div>
+                <h3 className="font-bold text-slate-900">Индивидуальный подход</h3>
+                <p className="text-slate-600 text-sm mt-1">
+                  Каждый маршрут обговаривается индивидуально и может меняться во время поездки с учётом ваших пожеланий.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 mt-1">
                  <Camera className="h-6 w-6 text-teal-600" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900">Фото — часть сервиса</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                Я знаю лучшие видовые точки и умею ловить свет. Профессиональные фото на ваш телефон — это
-                бесплатный бонус к любому туру.
-              </p>
-            </div>
-             <div className="flex flex-col gap-3">
-              <div className="bg-white p-3 rounded-full w-fit shadow-sm">
-                 <FileCheck className="h-6 w-6 text-teal-600" />
+              <div>
+                <h3 className="font-bold text-slate-900">Профессиональная фотосессия в подарок</h3>
+                <p className="text-slate-600 text-sm mt-1">
+                  При заказе тура вы получаете профессиональную фотосессию на ваш телефон абсолютно бесплатно!
+                </p>
               </div>
-              <h3 className="text-lg font-bold text-slate-900">Помощь на границе</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                Поездка в Абхазию имеет свои нюансы. Я помогу с документами, подскажу лучшее время для
-                прохождения границы, чтобы мы не теряли часы в очередях.
-              </p>
             </div>
+
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 mt-1">
+                 <Shield className="h-6 w-6 text-teal-600" />
+              </div>
+              <div>
+                <h3 className="font-bold text-slate-900">Без навязчивых дегустаций</h3>
+                <p className="text-slate-600 text-sm mt-1">
+                  Только комфортные туры без сомнительных дегустаций вина и мёда, без откатов от придорожных кафе.
+                </p>
+              </div>
+            </div>
+
+             <div className="flex gap-4">
+              <div className="flex-shrink-0 mt-1">
+                 <Utensils className="h-6 w-6 text-teal-600" />
+              </div>
+              <div>
+                <h3 className="font-bold text-slate-900">Лучшие заведения питания</h3>
+                <p className="text-slate-600 text-sm mt-1">
+                  Только те рестораны и кафе, где кушают местные жители — с европейским уровнем обслуживания и аутентичной кухней.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 mt-1">
+                 <MapPin className="h-6 w-6 text-teal-600" />
+              </div>
+              <div>
+                <h3 className="font-bold text-slate-900">Уникальные локации</h3>
+                <p className="text-slate-600 text-sm mt-1">
+                  Покажу места, куда не довезут туристические автобусы. Более 100 направлений маршрутов.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
 
+        {/* What is included Section */}
+         <div className="mb-16">
+          <h2 className="text-3xl font-bold text-slate-900 mb-8">Что включено в обслуживание</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                    <Shield className="h-5 w-5 text-teal-600" />
+                    Комфорт и безопасность
+                </h3>
+                <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside">
+                    <li>Конфиденциальность личной информации</li>
+                    <li>Профессиональный стиль вождения</li>
+                    <li>Аккуратная манера вождения</li>
+                    <li>Водительский стаж более 30 лет</li>
+                    <li>Пунктуальность</li>
+                </ul>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                    <Car className="h-5 w-5 text-teal-600" />
+                    Удобства в автомобиле
+                </h3>
+                <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside">
+                    <li>Всегда чистый и ухоженный салон</li>
+                    <li>Кожаный салон с климат-контролем</li>
+                    <li>Качественная музыкальная система</li>
+                    <li><strong>Безлимитный Wi-Fi</strong></li>
+                    <li>Прохладительные напитки</li>
+                    <li>Детские кресла и бустер</li>
+                    <li>Перевозка домашних питомцев</li>
+                </ul>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-teal-600" />
+                    Водитель
+                </h3>
+                 <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside">
+                    <li>Опрятный внешний вид, дресс-код</li>
+                    <li>Огромный опыт в гостеприимстве</li>
+                    <li>Отличное знание маршрутов</li>
+                </ul>
+            </div>
+          </div>
+        </div>
       </div>
+
+      {/* Reviews */}
+      <Reviews reviews={REVIEWS} />
     </div>
   );
 }
