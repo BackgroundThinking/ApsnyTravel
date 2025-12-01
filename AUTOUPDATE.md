@@ -33,7 +33,9 @@ When in doubt, the **Code and Production Environment** are the final authorities
 
 A maintenance cycle follows this repeatable loop:
 
-**`Recon → Plan → Apply → Validate → Report`**
+**`Trigger → Recon → Plan → Apply → Validate → Report`**
+
+**Standard Trigger:** The command **`/autoupdate`** issued by a human immediately initiates this cycle.
 
 ### 1. Recon (Analysis)
 *   **AI:** Scans `package.json`, checks `npm outdated` (if available) or analyzes dependency versions, reads `lib/branding.ts`, and reviews `docs/` for pending tasks.
