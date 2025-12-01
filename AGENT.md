@@ -85,8 +85,13 @@ See `CONTRIBUTING.md` for the full Git and PR workflow. If it is temporarily mis
 *   **Context:** "This affects `lib/booking.ts` (schema) and `components/booking/BookingForm.tsx` (UI)."
 *   **Constraints:** "Make it optional. Max 100 chars."
 
-### Standard Commands
-*   **`/autoupdate`**: Immediately initiates the **Auto-Update Cycle** defined in `AUTOUPDATE.md`. The agent should switch to the "Auto-Update" mode, perform Recon, and propose a Maintenance Plan.
+### Prime Directives & Standard Commands
+
+**CRITICAL TRIGGER:**
+*   **`/autoupdate`**: **IMMEDIATE ACTION REQUIRED.**
+    *   **Behavior:** Upon receiving this command, the agent must **immediately** suspend other tasks and initiate the **Auto-Update Cycle** defined in `AUTOUPDATE.md`.
+    *   **Action:** Switch to "Auto-Update" mode, read `AUTOUPDATE.md`, perform Recon, and propose a Maintenance Plan.
+    *   **Priority:** This command supersedes general conversation.
 
 ### For AI Responding
 AI responses SHOULD follow this structure:
