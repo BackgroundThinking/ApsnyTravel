@@ -34,7 +34,7 @@ export function Reviews({ reviews }: ReviewsProps) {
                     ))}
                   </div>
                 </div>
-                <p className="text-slate-600 text-sm italic">"{review.comment}"</p>
+                <p className="text-slate-600 text-sm italic">&quot;{review.comment}&quot;</p>
                 {review.date && <p className="text-xs text-slate-400 mt-3 text-right">{review.date}</p>}
               </div>
             ))}
