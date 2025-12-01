@@ -4,7 +4,9 @@ import { renderHook } from '@testing-library/react';
 import { usePageMeta } from './seo';
 
 function getMeta(property: string) {
-  return document.querySelector(`meta[property="${property}"], meta[name="${property}"]`)?.getAttribute('content');
+  return document
+    .querySelector(`meta[property="${property}"], meta[name="${property}"]`)
+    ?.getAttribute('content');
 }
 
 describe('usePageMeta', () => {

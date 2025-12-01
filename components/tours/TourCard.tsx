@@ -22,7 +22,7 @@ export const TourCard: React.FC<TourCardProps> = ({ tour }) => {
           {tour.type === 'tour' ? 'Тур' : 'Экскурсия'}
         </div>
       </div>
-      
+
       <div className="flex flex-1 flex-col p-4">
         <div className="flex items-center gap-2 text-xs text-slate-500 mb-2">
           <span className="flex items-center gap-1">
@@ -38,7 +38,7 @@ export const TourCard: React.FC<TourCardProps> = ({ tour }) => {
         <h3 className="mb-2 text-lg font-bold text-slate-900 line-clamp-1 group-hover:text-teal-700">
           {tour.title}
         </h3>
-        
+
         <p className="mb-4 flex-1 text-sm text-slate-600 line-clamp-2">
           {tour.short_desc}
         </p>
@@ -46,7 +46,9 @@ export const TourCard: React.FC<TourCardProps> = ({ tour }) => {
         <div className="mt-auto flex items-center justify-between border-t border-slate-100 pt-4">
           <div className="flex flex-col">
             <span className="text-xs text-slate-500">Стоимость</span>
-            <span className="font-bold text-slate-900">{formatPrice(tour.price_from)}</span>
+            <span className="font-bold text-slate-900">
+              {formatPrice(tour.price_from)}
+            </span>
           </div>
           <Button asChild size="sm">
             <Link to={`/tours/${tour.slug}`}>Подробнее</Link>

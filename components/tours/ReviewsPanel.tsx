@@ -25,7 +25,9 @@ export function ReviewsPanel({ tourId }: ReviewsPanelProps) {
   return (
     <div className="rounded-xl border border-slate-100 bg-white p-6 shadow-sm">
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-xl font-bold text-slate-900">Отзывы путешественников</h2>
+        <h2 className="text-xl font-bold text-slate-900">
+          Отзывы путешественников
+        </h2>
         <span className="text-sm text-slate-500">{reviews?.length ?? 0}</span>
       </div>
 
@@ -38,7 +40,8 @@ export function ReviewsPanel({ tourId }: ReviewsPanelProps) {
 
       {isError && (
         <p className="text-sm text-red-500">
-          {(error as Error)?.message || 'Не удалось загрузить отзывы. Попробуйте позже.'}
+          {(error as Error)?.message ||
+            'Не удалось загрузить отзывы. Попробуйте позже.'}
         </p>
       )}
 

@@ -16,7 +16,9 @@ export function BookingSidebar({ priceFrom, tourTitle }: BookingSidebarProps) {
         <div className="rounded-xl border border-slate-100 bg-white p-6 shadow-lg">
           <div className="mb-6 border-b border-slate-100 pb-6 text-center">
             <p className="mb-1 text-sm text-slate-500">Стоимость тура</p>
-            <p className="text-3xl font-bold text-teal-700">{formatPrice(priceFrom)}</p>
+            <p className="text-3xl font-bold text-teal-700">
+              {formatPrice(priceFrom)}
+            </p>
             <p className="mt-1 text-xs text-slate-400">за человека</p>
           </div>
 
@@ -31,7 +33,11 @@ export function BookingSidebar({ priceFrom, tourTitle }: BookingSidebarProps) {
               variant="outline"
               className="w-full border-blue-200 text-blue-600 hover:bg-blue-50"
             >
-              <a href={branding.contact.telegram} target="_blank" rel="noreferrer">
+              <a
+                href={branding.contact.telegram}
+                target="_blank"
+                rel="noreferrer"
+              >
                 Telegram
               </a>
             </Button>
@@ -40,7 +46,11 @@ export function BookingSidebar({ priceFrom, tourTitle }: BookingSidebarProps) {
               variant="outline"
               className="w-full border-green-200 text-green-600 hover:bg-green-50"
             >
-              <a href={branding.contact.whatsapp} target="_blank" rel="noreferrer">
+              <a
+                href={branding.contact.whatsapp}
+                target="_blank"
+                rel="noreferrer"
+              >
                 WhatsApp
               </a>
             </Button>

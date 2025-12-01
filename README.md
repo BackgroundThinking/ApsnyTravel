@@ -7,6 +7,7 @@ A boutique travel booking platform for **Alexander**, a private guide specializi
 ApsnyTravel serves as the digital storefront for a personal guide business. Unlike mass-market aggregators, this application focuses on a curated selection of author's tours and transfers, emphasizing quality, comfort, and authentic experiences without tourist traps.
 
 The platform allows users to:
+
 - Explore detailed itineraries for regions like Abkhazia ("Country of Soul") and the Olympic Coast.
 - View high-quality photo galleries and read real client reviews.
 - Request bookings via a secure, validated form.
@@ -58,12 +59,14 @@ This project is a modern Single Page Application (SPA) built for performance and
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/BackgroundThinking/ApsnyTravel.git
    cd ApsnyTravel
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
@@ -78,23 +81,23 @@ This project is a modern Single Page Application (SPA) built for performance and
 
 The application uses Vite's environment variable system. Create a `.env` file in the root directory to override defaults.
 
-| Variable | Description | Default / Example |
-|----------|-------------|-------------------|
-| `VITE_API_URL` | Base URL for the backend API. If omitted, the app uses internal mock data. | `https://api.apsnytravel.ru` |
+| Variable                | Description                                                                | Default / Example                 |
+| ----------------------- | -------------------------------------------------------------------------- | --------------------------------- |
+| `VITE_API_URL`          | Base URL for the backend API. If omitted, the app uses internal mock data. | `https://api.apsnytravel.ru`      |
 | `VITE_BOOKING_ENDPOINT` | Webhook or API endpoint for form submissions. **Required for production.** | `https://api.apsnytravel.ru/book` |
 
 > **Note:** In development, if `VITE_BOOKING_ENDPOINT` is not set, the booking form will simulate a successful submission after a delay.
 
 ## Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Starts the development server with HMR. |
-| `npm run build` | Builds the app for production. |
-| `npm run preview` | Locally previews the production build. |
-| `npm run lint` | Runs ESLint to catch code quality issues. |
-| `npm run format` | Formats code using Prettier. |
-| `npm test` | Runs unit tests via Vitest. |
+| Command           | Description                               |
+| ----------------- | ----------------------------------------- |
+| `npm run dev`     | Starts the development server with HMR.   |
+| `npm run build`   | Builds the app for production.            |
+| `npm run preview` | Locally previews the production build.    |
+| `npm run lint`    | Runs ESLint to catch code quality issues. |
+| `npm run format`  | Formats code using Prettier.              |
+| `npm test`        | Runs unit tests via Vitest.               |
 
 ## Deployment
 

@@ -22,7 +22,10 @@ const DEFAULT_OG_TYPE = 'website';
 // TODO: Replace with actual brand asset in production
 const DEFAULT_OG_IMAGE = 'https://picsum.photos/1200/630?random=default_og';
 
-function upsertMetaTag(selector: string, attributes: Record<string, string | undefined>) {
+function upsertMetaTag(
+  selector: string,
+  attributes: Record<string, string | undefined>,
+) {
   const head = document.head;
   let element = head.querySelector<HTMLMetaElement>(selector);
 
@@ -87,7 +90,9 @@ function resolveUrl(path?: string) {
 
 export function usePageMeta(meta?: PageMeta) {
   const resolvedMeta = useMemo(() => {
-    const title = meta?.title ? `${meta.title} — ${DEFAULT_TITLE}` : DEFAULT_TITLE;
+    const title = meta?.title
+      ? `${meta.title} — ${DEFAULT_TITLE}`
+      : DEFAULT_TITLE;
     const description = meta?.description ?? DEFAULT_DESCRIPTION;
     const canonicalUrl = resolveUrl(meta?.path);
 
@@ -100,7 +105,14 @@ export function usePageMeta(meta?: PageMeta) {
     };
 
     return { title, description, canonicalUrl, openGraph: og };
-  }, [meta?.description, meta?.openGraph?.image, meta?.openGraph?.type, meta?.openGraph?.url, meta?.path, meta?.title]);
+  }, [
+    meta?.description,
+    meta?.openGraph?.image,
+    meta?.openGraph?.type,
+    meta?.openGraph?.url,
+    meta?.path,
+    meta?.title,
+  ]);
 
   useEffect(() => {
     document.title = resolvedMeta.title;
@@ -110,22 +122,43 @@ export function usePageMeta(meta?: PageMeta) {
       content: resolvedMeta.description,
     });
 
-    upsertMetaTag('meta[property="og:title"]', { property: 'og:title', content: resolvedMeta.openGraph.title });
+    upsertMetaTag('meta[property="og:title"]', {
+      property: 'og:title',
+      content: resolvedMeta.openGraph.title,
+    });
     upsertMetaTag('meta[property="og:description"]', {
       property: 'og:description',
       content: resolvedMeta.openGraph.description,
     });
-    upsertMetaTag('meta[property="og:type"]', { property: 'og:type', content: resolvedMeta.openGraph.type });
-    upsertMetaTag('meta[property="og:url"]', { property: 'og:url', content: resolvedMeta.openGraph.url });
-    upsertMetaTag('meta[property="og:image"]', { property: 'og:image', content: resolvedMeta.openGraph.image });
+    upsertMetaTag('meta[property="og:type"]', {
+      property: 'og:type',
+      content: resolvedMeta.openGraph.type,
+    });
+    upsertMetaTag('meta[property="og:url"]', {
+      property: 'og:url',
+      content: resolvedMeta.openGraph.url,
+    });
+    upsertMetaTag('meta[property="og:image"]', {
+      property: 'og:image',
+      content: resolvedMeta.openGraph.image,
+    });
 
-    upsertMetaTag('meta[name="twitter:card"]', { name: 'twitter:card', content: 'summary_large_image' });
-    upsertMetaTag('meta[name="twitter:title"]', { name: 'twitter:title', content: resolvedMeta.openGraph.title });
+    upsertMetaTag('meta[name="twitter:card"]', {
+      name: 'twitter:card',
+      content: 'summary_large_image',
+    });
+    upsertMetaTag('meta[name="twitter:title"]', {
+      name: 'twitter:title',
+      content: resolvedMeta.openGraph.title,
+    });
     upsertMetaTag('meta[name="twitter:description"]', {
       name: 'twitter:description',
       content: resolvedMeta.openGraph.description,
     });
-    upsertMetaTag('meta[name="twitter:image"]', { name: 'twitter:image', content: resolvedMeta.openGraph.image });
+    upsertMetaTag('meta[name="twitter:image"]', {
+      name: 'twitter:image',
+      content: resolvedMeta.openGraph.image,
+    });
 
     upsertLinkTag('canonical', resolvedMeta.canonicalUrl);
   }, [resolvedMeta]);

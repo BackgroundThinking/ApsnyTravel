@@ -13,7 +13,7 @@ const markdownComponents: Components = {
     <h1
       className={clsx(
         'mt-6 text-2xl font-bold text-slate-900 first:mt-0',
-        className
+        className,
       )}
       {...props}
     />
@@ -22,7 +22,7 @@ const markdownComponents: Components = {
     <h2
       className={clsx(
         'mt-6 text-xl font-bold text-slate-900 first:mt-0',
-        className
+        className,
       )}
       {...props}
     />
@@ -31,7 +31,7 @@ const markdownComponents: Components = {
     <h3
       className={clsx(
         'mt-5 text-lg font-semibold text-slate-900 first:mt-0',
-        className
+        className,
       )}
       {...props}
     />
@@ -41,13 +41,16 @@ const markdownComponents: Components = {
       className={clsx(
         'text-base leading-relaxed text-slate-700',
         'mt-4 first:mt-0',
-        className
+        className,
       )}
       {...props}
     />
   ),
   strong: ({ className, ...props }) => (
-    <strong className={clsx('font-semibold text-slate-900', className)} {...props} />
+    <strong
+      className={clsx('font-semibold text-slate-900', className)}
+      {...props}
+    />
   ),
   em: ({ className, ...props }) => (
     <em className={clsx('text-slate-800', className)} {...props} />
@@ -56,7 +59,7 @@ const markdownComponents: Components = {
     <ul
       className={clsx(
         'mt-4 list-disc space-y-2 pl-5 text-slate-700 marker:text-slate-400 first:mt-0',
-        className
+        className,
       )}
       {...props}
     />
@@ -65,19 +68,22 @@ const markdownComponents: Components = {
     <ol
       className={clsx(
         'mt-4 list-decimal space-y-2 pl-5 text-slate-700 marker:text-slate-400 first:mt-0',
-        className
+        className,
       )}
       {...props}
     />
   ),
   li: ({ className, ...props }) => (
-    <li className={clsx('leading-relaxed text-slate-700', className)} {...props} />
+    <li
+      className={clsx('leading-relaxed text-slate-700', className)}
+      {...props}
+    />
   ),
   a: ({ className, ...props }) => (
     <a
       className={clsx(
         'font-semibold text-sky-700 underline underline-offset-4 transition-colors hover:text-sky-800',
-        className
+        className,
       )}
       {...props}
     />
@@ -94,7 +100,10 @@ export function TourContent({ description, galleryImages }: TourContentProps) {
         <h2 className="mb-4 text-xl font-bold text-slate-900">О туре</h2>
         <div className="space-y-4 text-slate-700">
           {trimmedDescription ? (
-            <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={markdownComponents}
+            >
               {trimmedDescription}
             </ReactMarkdown>
           ) : (

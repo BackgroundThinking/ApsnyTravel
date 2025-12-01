@@ -50,18 +50,19 @@ async function maybeDelay() {
   }
 
   const delay =
-    FALLBACK_MIN_DELAY_MS + Math.random() * (FALLBACK_MAX_DELAY_MS - FALLBACK_MIN_DELAY_MS);
+    FALLBACK_MIN_DELAY_MS +
+    Math.random() * (FALLBACK_MAX_DELAY_MS - FALLBACK_MIN_DELAY_MS);
 
   await new Promise((resolve) => setTimeout(resolve, delay));
 }
 
-  async function safeParseJson(response: Response) {
-    try {
-      return await response.json();
-    } catch {
-      return undefined;
-    }
+async function safeParseJson(response: Response) {
+  try {
+    return await response.json();
+  } catch {
+    return undefined;
   }
+}
 
 /**
  * Issue a GET request to the configured backend and normalize common error cases.
@@ -87,7 +88,11 @@ async function request<T>(path: string): Promise<T> {
   const parsedBody = await safeParseJson(response);
 
   if (!response.ok) {
-    throw new ApiError('API request failed', response.status, parsedBody ?? undefined);
+    throw new ApiError(
+      'API request failed',
+      response.status,
+      parsedBody ?? undefined,
+    );
   }
 
   if (parsedBody === undefined) {
@@ -169,5 +174,7 @@ export async function fetchReviewsByTourId(tourId: string): Promise<Review[]> {
     return [];
   }
 
-  return reviews.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  return reviews.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+  );
 }

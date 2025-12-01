@@ -20,14 +20,14 @@ We follow a structured Git workflow to ensure stability and code quality.
 
 ### 1. Branching Strategy
 
-*   **`main`**: The production-ready branch. **Never commit directly to `main`.**
-*   **Feature Branches**: Create a new branch for every feature, bug fix, or documentation update.
-    *   **Format**: `type/short-description`
-    *   **Examples**:
-        *   `feature/add-booking-validation`
-        *   `fix/typo-in-tour-description`
-        *   `docs/update-agent-guidelines`
-        *   `refactor/simplify-api-mock`
+- **`main`**: The production-ready branch. **Never commit directly to `main`.**
+- **Feature Branches**: Create a new branch for every feature, bug fix, or documentation update.
+  - **Format**: `type/short-description`
+  - **Examples**:
+    - `feature/add-booking-validation`
+    - `fix/typo-in-tour-description`
+    - `docs/update-agent-guidelines`
+    - `refactor/simplify-api-mock`
 
 ### 2. Making Changes
 
@@ -47,13 +47,13 @@ We follow a structured Git workflow to ensure stability and code quality.
 
 We encourage the use of [Conventional Commits](https://www.conventionalcommits.org/):
 
-*   `feat: ...` for new features
-*   `fix: ...` for bug fixes
-*   `docs: ...` for documentation
-*   `style: ...` for formatting changes
-*   `refactor: ...` for code refactoring
-*   `test: ...` for adding/modifying tests
-*   `chore: ...` for maintenance tasks
+- `feat: ...` for new features
+- `fix: ...` for bug fixes
+- `docs: ...` for documentation
+- `style: ...` for formatting changes
+- `refactor: ...` for code refactoring
+- `test: ...` for adding/modifying tests
+- `chore: ...` for maintenance tasks
 
 ## Pull Request Process
 
@@ -63,13 +63,13 @@ All changes must be reviewed and merged via Pull Request (PR).
 2.  **Open a Pull Request** targeting the `main` branch.
 3.  **Title**: Use a clear, descriptive title (e.g., "feat: Add email validation to booking form").
 4.  **Description**:
-    *   Summarize the changes.
-    *   Explain the "why" behind the change.
-    *   List any verification steps (how to test).
-    *   If you are an AI agent, declare your role (e.g., "Implementation by @Jules").
+    - Summarize the changes.
+    - Explain the "why" behind the change.
+    - List any verification steps (how to test).
+    - If you are an AI agent, declare your role (e.g., "Implementation by @Jules").
 5.  **Review**:
-    *   **Human Review is Mandatory.** A human maintainer must review the code, test the functionality, and approve the PR.
-    *   AI agents **must not** merge PRs.
+    - **Human Review is Mandatory.** A human maintainer must review the code, test the functionality, and approve the PR.
+    - AI agents **must not** merge PRs.
 
 ## Coding Standards
 
@@ -79,38 +79,38 @@ To maintain a high-quality codebase, please adhere to the following standards:
 
 We use **ESLint** and **Prettier**.
 
-*   Check for linting errors:
-    ```bash
-    npm run lint
-    ```
-*   Format code:
-    ```bash
-    npm run format
-    ```
+- Check for linting errors:
+  ```bash
+  npm run lint
+  ```
+- Format code:
+  ```bash
+  npm run format
+  ```
 
 ### Testing
 
 We use **Vitest** for testing.
 
-*   Run all tests:
-    ```bash
-    npm test
-    ```
-*   **Requirement**: New features should include unit tests where applicable. Bug fixes should include a regression test.
-*   **Location**: Colocate tests with the code they test (e.g., `lib/booking.ts` should have `lib/booking.spec.ts`).
+- Run all tests:
+  ```bash
+  npm test
+  ```
+- **Requirement**: New features should include unit tests where applicable. Bug fixes should include a regression test.
+- **Location**: Colocate tests with the code they test (e.g., `lib/booking.ts` should have `lib/booking.spec.ts`).
 
 ### Type Safety
 
-*   Do not use `any`. Use specific types or interfaces defined in `types.ts` or local component types.
-*   Ensure **Zod** schemas in `lib/` match the TypeScript interfaces.
+- Do not use `any`. Use specific types or interfaces defined in `types.ts` or local component types.
+- Ensure **Zod** schemas in `lib/` match the TypeScript interfaces.
 
 ## AI-Assisted Contributions
 
 This repository relies heavily on AI agents (like @Jules) for development.
 
-*   **Refer to [AGENT.md](./AGENT.md)** for specific rules governing AI behavior, roles, and safety protocols.
-*   **Refer to [AUTOUPDATE.md](./AUTOUPDATE.md)** for maintenance cycles and auto-update workflows.
-*   **Key Rule**: AI proposes; humans review, decide, and merge.
+- **Refer to [AGENT.md](./AGENT.md)** for specific rules governing AI behavior, roles, and safety protocols.
+- **Refer to [AUTOUPDATE.md](./AUTOUPDATE.md)** for maintenance cycles and auto-update workflows.
+- **Key Rule**: AI proposes; humans review, decide, and merge.
 
 ## Reporting Issues
 
