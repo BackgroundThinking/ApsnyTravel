@@ -8,6 +8,8 @@ export enum TourRegion {
 export enum TourType {
   TOUR = 'tour',
   EXCURSION = 'excursion',
+  TRANSFER = 'transfer',
+  PHOTO_TOUR = 'photo_tour',
 }
 
 export enum TourDifficulty {

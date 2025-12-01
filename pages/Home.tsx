@@ -42,17 +42,17 @@ export function Home() {
         </div>
         <div className="container relative z-10 mx-auto px-4 text-center">
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl mb-6">
-            Откройте для себя Абхазию<br />с местным экспертом
+            «Я влюбляю вас в Абхазию, <br />Сочи и Красную Поляну!»
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-200 mb-10">
-            Индивидуальные туры по Абхазии и Сочи. Комфортный транспорт, безопасные маршруты и истории, которых нет в путеводителях.
+            Авторские туры и VIP-трансферы от Александра. 30 лет за рулем. Без туристических ловушек и скрытых комиссий.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button asChild size="lg" className="text-lg px-8">
               <Link to="/catalog">Выбрать маршрут</Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="bg-transparent text-white border-white hover:bg-white/10 hover:text-white">
-              <Link to="/about">О гиде</Link>
+              <Link to="/about">О гиде и автопарке</Link>
             </Button>
           </div>
         </div>
@@ -61,32 +61,41 @@ export function Home() {
       {/* Trust Signals */}
       <section className="py-12 bg-white border-b border-slate-100">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div className="flex flex-col items-center">
               <div className="mb-4 rounded-full bg-teal-50 p-3">
                 <ShieldCheck className="h-8 w-8 text-teal-600" />
               </div>
               <h3 className="font-bold text-slate-900">Безопасность</h3>
               <p className="text-sm text-slate-600 mt-2">
-                Проверенные маршруты и надежный транспорт. 10 лет безаварийного стажа.
+                30+ лет стажа. Аккуратное вождение на серпантинах. Mercedes E & V Class.
               </p>
             </div>
             <div className="flex flex-col items-center">
               <div className="mb-4 rounded-full bg-teal-50 p-3">
                 <Star className="h-8 w-8 text-teal-600" />
               </div>
-              <h3 className="font-bold text-slate-900">Честные цены</h3>
+              <h3 className="font-bold text-slate-900">Без ловушек</h3>
               <p className="text-sm text-slate-600 mt-2">
-                Никаких скрытых доплат. Вы знаете полную стоимость до начала поездки.
+                Никаких комиссионных кафе и навязанных дегустаций. Только честные места.
               </p>
             </div>
             <div className="flex flex-col items-center">
               <div className="mb-4 rounded-full bg-teal-50 p-3">
                 <Users className="h-8 w-8 text-teal-600" />
               </div>
-              <h3 className="font-bold text-slate-900">Индивидуальный подход</h3>
+              <h3 className="font-bold text-slate-900">VIP Сервис</h3>
               <p className="text-sm text-slate-600 mt-2">
-                Мини-группы или приватные туры. Темп, который удобен именно вам.
+                Вода, Wi-Fi, детские кресла. Помощь с багажом и границей.
+              </p>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="mb-4 rounded-full bg-teal-50 p-3">
+                <Users className="h-8 w-8 text-teal-600" />
+              </div>
+              <h3 className="font-bold text-slate-900">Фото-бонус</h3>
+              <p className="text-sm text-slate-600 mt-2">
+                Профессиональные фото на ваш телефон в лучших локациях — бесплатно.
               </p>
             </div>
           </div>
