@@ -1,63 +1,125 @@
 # ApsnyTravel
 
-ApsnyTravel is a boutique travel catalog and booking experience for tours in Abkhazia and Sochi. The app showcases curated routes with photos, markdown descriptions, reviews, and a booking form that validates requests before submission.
+A boutique travel booking platform for **Alexander**, a private guide specializing in exclusive tours and VIP transfers across Sochi, Krasnaya Polyana, and Abkhazia.
 
-## Tech stack
-- Vite + React 19 + TypeScript
-- React Router 7 for clean URLs (`/`, `/catalog`, `/tours/:slug`, `/about`, `/faq`, `/contacts`)
-- React Query 5 for client-side data fetching and caching
-- Tailwind CSS 3 for styling
-- Zod + react-hook-form for booking validation
+## Overview
 
-## Features
-- Home and catalog views with featured and filtered tours
-- Detailed tour pages with gallery, markdown content, and reviews
-- Booking form with Zod validation and consent checkbox
-- Demo-friendly booking fallback when no endpoint is configured
+ApsnyTravel serves as the digital storefront for a personal guide business. Unlike mass-market aggregators, this application focuses on a curated selection of author's tours and transfers, emphasizing quality, comfort, and authentic experiences without tourist traps.
 
-## Getting started
+The platform allows users to:
+- Explore detailed itineraries for regions like Abkhazia ("Country of Soul") and the Olympic Coast.
+- View high-quality photo galleries and read real client reviews.
+- Request bookings via a secure, validated form.
+
+## Key Features
+
+- **Curated Catalog:** Browse tours by region (Sochi, Abkhazia, Krasnaya Polyana) or type (Tour, Transfer, Photo-tour).
+- **Rich Detail Pages:** Deep dive into tour programs with Markdown-rendered descriptions and itineraries (`src/pages/TourDetail.tsx`).
+- **Secure Booking Flow:** Integrated booking form with real-time validation using **Zod** and **React Hook Form**.
+- **Responsive Design:** Fully mobile-optimized UI built with **Tailwind CSS**.
+- **Mock-First Development:** Runs seamlessly without a backend in development mode, simulating network latency for realistic UX testing.
+
+## Architecture & Tech Stack
+
+This project is a modern Single Page Application (SPA) built for performance and maintainability.
+
+- **Frontend Framework:** React 19 + TypeScript
+- **Build Tool:** Vite
+- **Routing:** React Router 7
+- **Data Fetching:** TanStack Query v5 (React Query)
+- **Styling:** Tailwind CSS 3
+- **Validation:** Zod + React Hook Form
+- **Testing:** Vitest
+
+## Project Structure
+
+```
+├── components/        # Reusable UI components and feature-specific blocks
+├── docs/              # Architectural documentation and reports
+├── lib/               # Utilities, API mocks, and Zod schemas
+│   ├── api.ts         # Data fetching layer (Mock/Real toggle)
+│   ├── booking.ts     # Booking logic and validation types
+│   └── branding.ts    # Centralized configuration for brand identity
+├── pages/             # Route components (Home, Catalog, TourDetail, etc.)
+├── public/            # Static assets
+├── types.ts           # Shared TypeScript interfaces (Tour, Review, etc.)
+├── App.tsx            # Main application shell and routing
+└── vercel.json        # Vercel deployment configuration
+```
+
+## Getting Started
 
 ### Prerequisites
-- Node.js 18+
 
-### Install and run
-1. Install dependencies:
+- Node.js 18.0.0 or higher
+- npm (v9+ recommended)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/BackgroundThinking/ApsnyTravel.git
+   cd ApsnyTravel
+   ```
+
+2. Install dependencies:
    ```bash
    npm install
    ```
-2. Start the dev server (Vite defaults to port 3000):
+
+3. Start the development server:
    ```bash
    npm run dev
    ```
+   The application will be available at `http://localhost:3000`.
 
-### Build
-Produce an optimized production bundle:
-```bash
-npm run build
-```
-Use `npm run preview` to serve the built assets locally.
+## Configuration
 
-## Booking configuration
-Bookings are posted to the endpoint set via `VITE_BOOKING_ENDPOINT` at build time.
-- **Demo mode (no endpoint set):** the client validates the payload, waits ~1.2s, and returns a mocked success object.
-- **Production with no endpoint:** submission throws a descriptive error to avoid silent data loss.
+The application uses Vite's environment variable system. Create a `.env` file in the root directory to override defaults.
 
-## Deployment notes
-- The app uses `BrowserRouter`; static hosts must serve `index.html` for all routes (see `vercel.json` for a catch-all rewrite example).
-- Ensure `VITE_BOOKING_ENDPOINT` is configured in production if you need real submissions.
+| Variable | Description | Default / Example |
+|----------|-------------|-------------------|
+| `VITE_API_URL` | Base URL for the backend API. If omitted, the app uses internal mock data. | `https://api.apsnytravel.ru` |
+| `VITE_BOOKING_ENDPOINT` | Webhook or API endpoint for form submissions. **Required for production.** | `https://api.apsnytravel.ru/book` |
 
-## Project structure
-- `index.tsx` — app entry, mounts React Query and `App`.
-- `App.tsx` — router shell and layout.
-- `pages/` — route components (home, catalog, tour detail, about, FAQ, contacts).
-- `components/` — UI primitives and tour/booking building blocks.
-- `lib/` — API mock/remote helpers, booking validation, utilities.
-- `constants.ts` — mock data source for tours and reviews.
-- `docs/` — architecture and audit notes.
+> **Note:** In development, if `VITE_BOOKING_ENDPOINT` is not set, the booking form will simulate a successful submission after a delay.
 
-## Contributing and testing
-- Linting is not yet configured; run the build to catch type errors:
-  ```bash
-  npm run build
-  ```
-- Please keep validation strict: all booking payloads must pass the Zod schema before submission.
+## Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Starts the development server with HMR. |
+| `npm run build` | Builds the app for production. |
+| `npm run preview` | Locally previews the production build. |
+| `npm run lint` | Runs ESLint to catch code quality issues. |
+| `npm run format` | Formats code using Prettier. |
+| `npm test` | Runs unit tests via Vitest. |
+
+## Deployment
+
+### Recommended: Vercel
+
+This repository includes a `vercel.json` configuration file specifically designed for Vercel deployment. It handles Single Page Application (SPA) rewrites automatically.
+
+1. Push your code to a Git provider (GitHub, GitLab, etc.).
+2. Import the project into Vercel.
+3. Add the `VITE_BOOKING_ENDPOINT` environment variable in the Vercel dashboard.
+4. Deploy.
+
+### Alternative Static Hosting
+
+You can deploy the `dist` folder (generated by `npm run build`) to any static hosting service (Netlify, Cloudflare Pages, AWS S3/CloudFront).
+
+**Important:** You must configure your host to rewrite all 404 requests to `index.html` so that React Router can handle deep linking.
+
+## Contributing
+
+This project is primarily maintained by an internal team to support the business operations of ApsnyTravel.
+
+While public contributions are not actively solicited, bug reports and suggestions are welcome. If you wish to propose a change, please open an issue first to discuss it.
+
+## License
+
+**Proprietary / All Rights Reserved.**
+
+This code is private property. Unauthorized copying, modification, distribution, or commercial use is strictly prohibited without explicit permission from the project owner.
