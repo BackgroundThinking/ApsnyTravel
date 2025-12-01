@@ -119,6 +119,8 @@ This project is primarily maintained by an internal team to support the business
 
 While public contributions are not actively solicited, bug reports and suggestions are welcome. If you wish to propose a change, please open an issue first to discuss it.
 
+For detailed information on maintenance cycles and AI-assisted updates, please refer to [AUTOUPDATE.md](./AUTOUPDATE.md).
+
 ## License
 
 **Proprietary / All Rights Reserved.**
