@@ -8,13 +8,23 @@ const futureDateSchema = z
   .optional()
   .refine((value) => {
     if (!value) return true;
-    const parsed = new Date(value);
+
+    // Explicitly append time if it's a simple YYYY-MM-DD string to ensure local parsing
+    // This prevents "2023-10-10" being parsed as UTC midnight (often previous day in Western hemispheres)
+    let parseString = value;
+    if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+      parseString += 'T00:00:00';
+    }
+
+    const parsed = new Date(parseString);
     if (Number.isNaN(parsed.getTime())) return false;
+
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    // Adjust parsed date to local midnight to compare correctly
-    const parsedLocal = new Date(parsed.getUTCFullYear(), parsed.getUTCMonth(), parsed.getUTCDate());
-    return parsedLocal.getTime() >= today.getTime();
+
+    // At this point parsed is already local because we appended T00:00:00 (or it was ISO with TZ)
+    // We just need to check if it's >= today (midnight)
+    return parsed.getTime() >= today.getTime();
   }, 'Дата должна быть в будущем');
 
 export const bookingPayloadSchema = z.object({

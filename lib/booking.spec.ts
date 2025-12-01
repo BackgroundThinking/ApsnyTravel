@@ -43,7 +43,7 @@ describe('Booking Validation', () => {
 
     it('should allow "today" regardless of timezone', () => {
         const today = new Date();
-        const todayStr = today.toISOString().split('T')[0];
+        const todayStr = today.toISOString().split('T')[0]; // "YYYY-MM-DD"
 
         const payload = {
             tourTitle: 'Test Tour',
