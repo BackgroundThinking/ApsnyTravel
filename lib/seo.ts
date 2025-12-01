@@ -19,6 +19,8 @@ export interface PageMeta {
 const DEFAULT_TITLE = branding.siteName;
 const DEFAULT_DESCRIPTION = branding.defaultDescription;
 const DEFAULT_OG_TYPE = 'website';
+// TODO: Replace with actual brand asset in production
+const DEFAULT_OG_IMAGE = 'https://picsum.photos/1200/630?random=default_og';
 
 function upsertMetaTag(selector: string, attributes: Record<string, string | undefined>) {
   const head = document.head;
@@ -94,7 +96,7 @@ export function usePageMeta(meta?: PageMeta) {
       description,
       type: meta?.openGraph?.type ?? DEFAULT_OG_TYPE,
       url: meta?.openGraph?.url ?? canonicalUrl,
-      image: meta?.openGraph?.image,
+      image: meta?.openGraph?.image ?? DEFAULT_OG_IMAGE,
     };
 
     return { title, description, canonicalUrl, openGraph: og };

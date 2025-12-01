@@ -80,4 +80,36 @@ describe('Booking Validation', () => {
             expect(result.data.client_contact).toBe('+79991234567');
         }
     });
+
+    it('should reject invalid phone numbers', () => {
+        const invalidPhones = ['123', 'abc', '+12345'];
+        const validDate = new Date().toISOString().split('T')[0];
+
+        invalidPhones.forEach((phone) => {
+            const result = bookingPayloadSchema.safeParse({
+                tourTitle: 'Test',
+                client_name: 'Test',
+                client_contact: phone,
+                desired_date: validDate,
+                pax: 2,
+                consent: true
+            });
+            expect(result.success).toBe(false);
+        });
+    });
+
+    it('should enforce pax limits', () => {
+        const validDate = new Date().toISOString().split('T')[0];
+        const basePayload = {
+            tourTitle: 'Test',
+            client_name: 'Test',
+            client_contact: '+79990000000',
+            desired_date: validDate,
+            consent: true
+        };
+
+        expect(bookingPayloadSchema.safeParse({ ...basePayload, pax: 0 }).success).toBe(false);
+        expect(bookingPayloadSchema.safeParse({ ...basePayload, pax: 21 }).success).toBe(false);
+        expect(bookingPayloadSchema.safeParse({ ...basePayload, pax: 5 }).success).toBe(true);
+    });
 });

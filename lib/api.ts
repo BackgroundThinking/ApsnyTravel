@@ -2,6 +2,8 @@ import { REVIEWS, TOURS } from '../constants';
 import { Review, Tour } from '../types';
 
 /**
+ * Service Boundary: TourService (see GRAPH.md)
+ *
  * API boundary for tours and reviews.
  *
  * The UI always calls these functions. They operate in one of two modes:
@@ -18,6 +20,15 @@ export class ApiError extends Error {
     this.name = 'ApiError';
     this.status = status;
     this.details = details;
+  }
+
+  toJSON() {
+    return {
+      name: this.name,
+      message: this.message,
+      status: this.status,
+      details: this.details,
+    };
   }
 }
 
