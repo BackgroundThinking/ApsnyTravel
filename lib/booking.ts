@@ -22,7 +22,15 @@ export const bookingPayloadSchema = z.object({
   client_name: z.string().min(2, 'Имя должно содержать минимум 2 символа'),
   client_contact: z
     .string()
-    .regex(INTERNATIONAL_PHONE_REGEX, 'Введите номер в международном формате, например +79990000000'),
+    .transform((val) => val.replace(/[\s\-\(\)]/g, ''))
+    .pipe(
+      z
+        .string()
+        .regex(
+          INTERNATIONAL_PHONE_REGEX,
+          'Введите номер в международном формате, например +79990000000',
+        ),
+    ),
   desired_date: futureDateSchema,
   pax: z.number().min(1, 'Минимум 1 человек').max(20, 'Максимум 20 человек'),
   client_message: z.string().max(500, 'Сообщение слишком длинное').optional(),
