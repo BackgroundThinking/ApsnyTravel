@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { ArrowRight, Loader2, ShieldCheck, Star, Users } from 'lucide-react';
+import { ArrowRight, Loader2, ShieldCheck, Star, Users, Camera } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { TourCard } from '../components/tours/TourCard';
 import { fetchTours } from '../lib/api';
@@ -42,10 +42,10 @@ export function Home() {
         </div>
         <div className="container relative z-10 mx-auto px-4 text-center">
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl mb-6">
-            «Я влюбляю вас в Абхазию, <br />Сочи и Красную Поляну!»
+            «Влюбляю в Абхазию!»
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-200 mb-10">
-            Авторские туры и VIP-трансферы от Александра. 30 лет за рулем. Без туристических ловушек и скрытых комиссий.
+             Авторские туры по Абхазии, Сочи и Красной Поляне. VIP-трансфер. Более 30 лет опыта.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button asChild size="lg" className="text-lg px-8">
@@ -66,36 +66,36 @@ export function Home() {
               <div className="mb-4 rounded-full bg-teal-50 p-3">
                 <ShieldCheck className="h-8 w-8 text-teal-600" />
               </div>
-              <h3 className="font-bold text-slate-900">Безопасность</h3>
+              <h3 className="font-bold text-slate-900">LUX-сервис</h3>
               <p className="text-sm text-slate-600 mt-2">
-                30+ лет стажа. Аккуратное вождение на серпантинах. Mercedes E & V Class.
+                Высокие стандарты. Безопасность и комфорт на Mercedes E & V Class.
               </p>
             </div>
             <div className="flex flex-col items-center">
+              <div className="mb-4 rounded-full bg-teal-50 p-3">
+                <Users className="h-8 w-8 text-teal-600" />
+              </div>
+              <h3 className="font-bold text-slate-900">Индивидуально</h3>
+              <p className="text-sm text-slate-600 mt-2">
+                Маршрут под вас. Уникальные локации, куда не возят автобусы.
+              </p>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="mb-4 rounded-full bg-teal-50 p-3">
+                <Camera className="h-8 w-8 text-teal-600" />
+              </div>
+              <h3 className="font-bold text-slate-900">Фото в подарок</h3>
+              <p className="text-sm text-slate-600 mt-2">
+                Профессиональная фотосессия на ваш телефон — бесплатно к каждому туру.
+              </p>
+            </div>
+             <div className="flex flex-col items-center">
               <div className="mb-4 rounded-full bg-teal-50 p-3">
                 <Star className="h-8 w-8 text-teal-600" />
               </div>
               <h3 className="font-bold text-slate-900">Без ловушек</h3>
               <p className="text-sm text-slate-600 mt-2">
-                Никаких комиссионных кафе и навязанных дегустаций. Только честные места.
-              </p>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="mb-4 rounded-full bg-teal-50 p-3">
-                <Users className="h-8 w-8 text-teal-600" />
-              </div>
-              <h3 className="font-bold text-slate-900">VIP Сервис</h3>
-              <p className="text-sm text-slate-600 mt-2">
-                Вода, Wi-Fi, детские кресла. Помощь с багажом и границей.
-              </p>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="mb-4 rounded-full bg-teal-50 p-3">
-                <Users className="h-8 w-8 text-teal-600" />
-              </div>
-              <h3 className="font-bold text-slate-900">Фото-бонус</h3>
-              <p className="text-sm text-slate-600 mt-2">
-                Профессиональные фото на ваш телефон в лучших локациях — бесплатно.
+                Никаких навязчивых дегустаций и скрытых комиссий. Честный подход.
               </p>
             </div>
           </div>
@@ -106,7 +106,11 @@ export function Home() {
       <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-10">
-            <h2 className="text-3xl font-bold text-slate-900">Популярные туры</h2>
+            <div>
+                 <h2 className="text-3xl font-bold text-slate-900">Популярные направления</h2>
+                 <p className="text-slate-500 mt-2">Более 100 авторских маршрутов на любой вкус</p>
+            </div>
+
             <Link to="/catalog" className="hidden sm:flex items-center text-teal-600 font-medium hover:text-teal-700">
               Смотреть все <ArrowRight className="ml-1 h-4 w-4" />
             </Link>
@@ -147,22 +151,39 @@ export function Home() {
         </div>
       </section>
 
+      {/* Transfer Teaser */}
+      <section className="py-16 bg-white border-t border-slate-100">
+         <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Нужен трансфер из аэропорта?</h2>
+            <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
+                Встретим вас с табличкой, поможем с багажом и с комфортом доставим в отель.
+                Фиксированные тарифы от 999 руб.
+            </p>
+            <div className="flex justify-center gap-4">
+                 <Button asChild variant="default" size="lg">
+                    <Link to="/transfers">Узнать тарифы</Link>
+                </Button>
+            </div>
+         </div>
+      </section>
+
       {/* About Teaser */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-slate-900 text-white">
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
-          <div className="w-full md:w-1/2 relative aspect-video rounded-xl overflow-hidden bg-slate-100">
-             <img src="https://picsum.photos/800/600?grayscale" alt="Guide Alexander" className="object-cover h-full w-full" />
+          <div className="w-full md:w-1/2 relative aspect-video rounded-xl overflow-hidden bg-slate-800">
+             <img src="https://picsum.photos/800/600?grayscale" alt="Guide Alexander" className="object-cover h-full w-full opacity-80" />
           </div>
           <div className="w-full md:w-1/2">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">Привет! Я Александр.</h2>
-            <p className="text-lg text-slate-600 mb-6">
-              Я частный гид по Абхазии и Сочи. Я родился и вырос здесь, поэтому знаю каждый поворот серпантина и каждую тропинку в горах.
+            <h2 className="text-3xl font-bold mb-4">ApsnyTravel — это больше, чем такси</h2>
+            <p className="text-lg text-slate-300 mb-6">
+              Я — Александр, ваш персональный гид и водитель. Я родился здесь и знаю каждый уголок.
+              Со мной вы увидите Абхазию и Сочи такими, какими их люблю я.
             </p>
-            <p className="text-slate-600 mb-8">
+            <p className="text-slate-400 mb-8">
               Моя цель — показать вам настоящий Кавказ, не «открыточный», а живой и гостеприимный. Без спешки, без толп туристов, с душой.
             </p>
-            <Button asChild>
-              <Link to="/about">Узнать больше обо мне</Link>
+            <Button asChild variant="outline" className="border-white text-white hover:bg-white hover:text-slate-900">
+              <Link to="/about">Подробнее обо мне</Link>
             </Button>
           </div>
         </div>
