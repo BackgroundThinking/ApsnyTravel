@@ -29,6 +29,7 @@ All AI agents must adhere to these three pillars:
 
 ### Pillar 1: Grounded in Reality
 *   **Verify before referencing:** Always verify the existence of files, scripts, and env vars by inspecting the repository tree and actual files (e.g., checking `package.json` → `scripts`) before referencing them.
+*   **No `src/` Directory:** This project uses a flat structure. Code resides in `components/`, `lib/`, and `pages/` at the root. Do not hallucinate a `src/` directory.
 *   **Explicit Assumptions:** If you must assume something due to missing context, explicitly state it as an assumption.
 
 ### Pillar 2: Safety & Validation
