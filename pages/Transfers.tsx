@@ -1,6 +1,6 @@
 import React from 'react';
 import { usePageMeta } from '../lib/seo';
-import { Car, MapPin, Clock, CreditCard } from 'lucide-react';
+import { Car, CreditCard } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Link } from 'react-router-dom';
 

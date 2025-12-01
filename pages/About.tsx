@@ -1,6 +1,6 @@
 import React from 'react';
 import { usePageMeta } from '../lib/seo';
-import { Car, CheckCircle2, Shield, Wifi, MapPin, Camera, Utensils, Award } from 'lucide-react';
+import { Car, CheckCircle2, Shield, MapPin, Camera, Utensils, Award } from 'lucide-react';
 import { REVIEWS } from '../constants';
 import { Reviews } from '../components/Reviews';
 
