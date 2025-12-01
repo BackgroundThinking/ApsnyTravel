@@ -1,5 +1,94 @@
-import { describe, it, expect } from 'vitest';
-import { bookingPayloadSchema } from './booking';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import {
+  bookingPayloadSchema,
+  submitBookingRequest,
+  BookingSubmissionError,
+} from './booking';
+
+describe('Booking Submission', () => {
+  const validPayload = {
+    tourTitle: 'Test Tour',
+    client_name: 'Test Client',
+    client_contact: '+79991234567',
+    desired_date: new Date().toISOString().split('T')[0],
+    pax: 2,
+    consent: true,
+  };
+
+  beforeEach(() => {
+    vi.unstubAllEnvs();
+    vi.restoreAllMocks();
+  });
+
+  it('should return mock result when endpoint is missing in DEV', async () => {
+    vi.stubEnv('VITE_BOOKING_ENDPOINT', '');
+    vi.stubEnv('PROD', false); // simulate dev
+
+    const result = await submitBookingRequest(validPayload);
+    expect(result).toEqual({ ok: true, mocked: true });
+  });
+
+  it('should throw error when endpoint is missing in PROD', async () => {
+    vi.stubEnv('VITE_BOOKING_ENDPOINT', '');
+    vi.stubEnv('PROD', true); // simulate prod
+
+    await expect(submitBookingRequest(validPayload)).rejects.toThrow(
+      BookingSubmissionError,
+    );
+  });
+
+  it('should call fetch when endpoint is present', async () => {
+    vi.stubEnv('VITE_BOOKING_ENDPOINT', 'https://api.example.com/book');
+
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ success: true }),
+    });
+    vi.stubGlobal('fetch', fetchMock);
+
+    const result = await submitBookingRequest(validPayload);
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      'https://api.example.com/book',
+      expect.objectContaining({
+        method: 'POST',
+        body: JSON.stringify(validPayload),
+      }),
+    );
+    expect(result).toEqual({
+      ok: true,
+      mocked: false,
+      response: { success: true },
+    });
+  });
+
+  it('should handle fetch errors', async () => {
+    vi.stubEnv('VITE_BOOKING_ENDPOINT', 'https://api.example.com/book');
+
+    const fetchMock = vi.fn().mockRejectedValue(new Error('Network fail'));
+    vi.stubGlobal('fetch', fetchMock);
+
+    await expect(submitBookingRequest(validPayload)).rejects.toThrow(
+      'Network fail',
+    );
+  });
+
+  it('should handle non-ok api response', async () => {
+    vi.stubEnv('VITE_BOOKING_ENDPOINT', 'https://api.example.com/book');
+
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 400,
+      text: async () => 'Validation failed',
+      json: async () => ({ error: 'Validation failed' }),
+    });
+    vi.stubGlobal('fetch', fetchMock);
+
+    await expect(submitBookingRequest(validPayload)).rejects.toThrow(
+      'Validation failed',
+    );
+  });
+});
 
 describe('Booking Validation', () => {
   it('should validate future dates correctly', () => {
