@@ -97,6 +97,7 @@ We use **Vitest** for testing.
     npm test
     ```
 *   **Requirement**: New features should include unit tests where applicable. Bug fixes should include a regression test.
+*   **Location**: Colocate tests with the code they test (e.g., `lib/booking.ts` should have `lib/booking.spec.ts`).
 
 ### Type Safety
 
