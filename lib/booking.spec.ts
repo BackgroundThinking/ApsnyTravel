@@ -2,7 +2,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import {
   bookingPayloadSchema,
   submitBookingRequest,
-  BookingSubmissionError,
 } from './booking';
 
 describe('Booking Submission', () => {
@@ -20,21 +19,30 @@ describe('Booking Submission', () => {
     vi.restoreAllMocks();
   });
 
-  it('should return mock result when endpoint is missing in DEV', async () => {
-    vi.stubEnv('VITE_BOOKING_ENDPOINT', '');
-    vi.stubEnv('PROD', false); // simulate dev
+  it('should default to /api/book and call fetch when endpoint is missing', async () => {
+    vi.stubEnv('VITE_BOOKING_ENDPOINT', ''); // missing endpoint
+
+    // Mock fetch
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ success: true }),
+    });
+    vi.stubGlobal('fetch', fetchMock);
 
     const result = await submitBookingRequest(validPayload);
-    expect(result).toEqual({ ok: true, mocked: true });
-  });
 
-  it('should throw error when endpoint is missing in PROD', async () => {
-    vi.stubEnv('VITE_BOOKING_ENDPOINT', '');
-    vi.stubEnv('PROD', true); // simulate prod
-
-    await expect(submitBookingRequest(validPayload)).rejects.toThrow(
-      BookingSubmissionError,
+    expect(fetchMock).toHaveBeenCalledWith(
+      '/api/book',
+      expect.objectContaining({
+        method: 'POST',
+        body: JSON.stringify(validPayload),
+      }),
     );
+    expect(result).toEqual({
+      ok: true,
+      mocked: false,
+      response: { success: true },
+    });
   });
 
   it('should call fetch when endpoint is present', async () => {
