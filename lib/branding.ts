@@ -1,9 +1,11 @@
 export const branding = {
   siteName: 'ApsnyTravel',
   siteTagline: 'Индивидуальные туры по Абхазии и Сочи с частным гидом',
+  heroTagline: 'Влюбляю в Абхазию!',
   regionLabel: 'Абхазия и Сочи',
   defaultDescription:
     'Каталог авторских экскурсий и индивидуальных туров по Абхазии и Сочи с опытным частным гидом.',
+  defaultOgImage: 'https://picsum.photos/1200/630?random=default_og',
   contact: {
     phone: {
       display: '+7 (900) 123-45-67',

@@ -19,8 +19,7 @@ export interface PageMeta {
 const DEFAULT_TITLE = branding.siteName;
 const DEFAULT_DESCRIPTION = branding.defaultDescription;
 const DEFAULT_OG_TYPE = 'website';
-// TODO: Replace with actual brand asset in production
-const DEFAULT_OG_IMAGE = 'https://picsum.photos/1200/630?random=default_og';
+const DEFAULT_OG_IMAGE = branding.defaultOgImage;
 
 function upsertMetaTag(
   selector: string,
