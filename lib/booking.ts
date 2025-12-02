@@ -1,7 +1,6 @@
 import { z } from 'zod';
 
 const INTERNATIONAL_PHONE_REGEX = /^\+?[1-9]\d{7,14}$/;
-const WAIT_FALLBACK_MS = 1200;
 
 const futureDateSchema = z
   .string()
@@ -72,20 +71,8 @@ export async function submitBookingRequest(
 ): Promise<BookingSubmissionResult> {
   bookingPayloadSchema.parse(payload);
 
-  const endpoint = import.meta.env.VITE_BOOKING_ENDPOINT;
-
-  if (!endpoint) {
-    if (import.meta.env.PROD) {
-      throw new BookingSubmissionError(
-        'Не настроен endpoint для бронирования',
-        500,
-      );
-    }
-
-    console.warn('VITE_BOOKING_ENDPOINT отсутствует. Возвращаем мок-ответ.');
-    await new Promise((resolve) => setTimeout(resolve, WAIT_FALLBACK_MS));
-    return { ok: true, mocked: true };
-  }
+  // Default to local API route if not configured
+  const endpoint = import.meta.env.VITE_BOOKING_ENDPOINT || '/api/book';
 
   const response = await fetch(endpoint, {
     method: 'POST',
