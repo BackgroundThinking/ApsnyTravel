@@ -85,8 +85,9 @@ The application uses Vite's environment variable system. Create a `.env` file in
 | ----------------------- | -------------------------------------------------------------------------- | --------------------------------- |
 | `VITE_API_URL`          | Base URL for the backend API. If omitted, the app uses internal mock data. | `https://api.apsnytravel.ru`      |
 | `VITE_BOOKING_ENDPOINT` | Webhook or API endpoint for form submissions. **Required for production.** | `https://api.apsnytravel.ru/book` |
+| `VITE_USE_MOCK`         | Force mock mode for bookings. Useful for UI testing.                       | `true` or `false`                 |
 
-> **Note:** In development, if `VITE_BOOKING_ENDPOINT` is not set, the booking form will simulate a successful submission after a delay.
+> **Note:** In development, if `VITE_USE_MOCK` is set to `true`, the booking form will simulate a successful submission.
 
 ## Available Scripts
 
@@ -122,7 +123,7 @@ This project is primarily maintained by an internal team to support the business
 
 While public contributions are not actively solicited, bug reports and suggestions are welcome. If you wish to propose a change, please open an issue first to discuss it.
 
-For detailed information on maintenance cycles and AI-assisted updates, please refer to [AUTOUPDATE.md](./AUTOUPDATE.md).
+For detailed information on maintenance cycles and AI-assisted updates, please refer to [AUTOUPDATE.md](./AUTOUPDATE.md) and [AGENTS.md](./AGENTS.md).
 
 ## License
 

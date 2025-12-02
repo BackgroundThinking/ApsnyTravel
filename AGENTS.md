@@ -2,9 +2,14 @@
 
 This document defines how AI agents should behave when attached to this repository, and how humans should work with them safely and effectively.
 
-## 1. Introduction
+## 1. Project Context & Mission
 
 **ApsnyTravel** is a boutique, personal-brand travel platform for **Alexander**, a private guide specializing in curated tours and VIP transfers across Sochi, Krasnaya Polyana, and Abkhazia. The project emphasizes trust, authenticity, and high-quality experiences, avoiding tourist traps and commission-based stops.
+
+### Core Architectural Principles
+- **Mock-First Architecture:** The application is designed to run completely without a backend in development. Data fetching logic in `lib/api.ts` and `lib/booking.ts` checks for `VITE_API_URL` or `VITE_USE_MOCK`. If configured for mock mode (or if no remote is set), it returns local constants with simulated latency.
+- **Flat File Structure:** We do **not** use a `src/` directory. All core code lives in root-level folders: `components/`, `lib/`, `pages/`, and `api/`.
+- **Zero-Trust Booking:** The booking flow uses strict Zod validation on the client (`lib/booking.ts`) and must be verified again on the server (or serverless function).
 
 In ApsnyTravel, **AI agents propose; humans review, decide, and merge.** Humans remain the final decision-makers and are responsible for all changes shipped to production.
 
@@ -121,7 +126,7 @@ AI responses SHOULD follow this structure:
 
 0.  **Remember the rule:** AI agents propose; humans review, decide, and merge.
 1.  **Confirm Context:** Confirm you are working on the ApsnyTravel project.
-2.  **Read Docs:** Read `README.md`, `lib/branding.ts`, and this `AGENT.md` file.
+2.  **Read Docs:** Read `README.md`, `lib/branding.ts`, and this `AGENTS.md` file.
 3.  **Identify Files:** Locate relevant components, libraries, and types in the file tree.
 4.  **Restate Goal:** Restate the user's goal and constraints in your own words to ensure alignment.
 5.  **Propose Plan:** Propose a clear, step-by-step plan to the human before making large changes.
@@ -132,8 +137,8 @@ AI responses SHOULD follow this structure:
 
 ## 10. Future Evolution
 
-- **Living Document:** This `AGENT.md` is a living document. As the project evolves, this file should be updated.
-- **AI Proposals:** AI agents may propose improvements to this document by creating a feature branch, updating `AGENT.md`, and opening a PR clearly marked as "Agent guide improvement" for human review.
+- **Living Document:** This `AGENTS.md` is a living document. As the project evolves, this file should be updated.
+- **AI Proposals:** AI agents may propose improvements to this document by creating a feature branch, updating `AGENTS.md`, and opening a PR clearly marked as "Agent guide improvement" for human review.
 
 ## 11. Related Documents & Doc Hierarchy
 
@@ -148,6 +153,6 @@ This document is the main operational guide for AI agents. It sits at the center
 
 AI agents should:
 
-- Start with `README.md` → then `AGENT.md` → then `CONTRIBUTING.md`.
+- Start with `README.md` → then `AGENTS.md` → then `CONTRIBUTING.md`.
 - Consult `AUTOUPDATE.md` for maintenance tasks.
 - Use `INDEX.md`, `GRAPH.md`, and `docs/` when they need deeper architectural or domain context.
