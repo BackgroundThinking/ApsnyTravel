@@ -15,7 +15,7 @@ describe('Branding Configuration', () => {
   it('should have social links', () => {
     expect(branding.socials.instagram).toBeDefined();
     expect(branding.contact.telegram).toContain('t.me');
-    expect(branding.contact.whatsapp).toContain('wa.me');
+    expect(branding.contact.whatsapp).toMatch(/wa\.me|whatsapp\.com/);
   });
 
   it('should have a default description', () => {

@@ -77,6 +77,11 @@ export function Footer() {
                 </a>
               </li>
               <li>{branding.contact.phone.display}</li>
+              {branding.contact.address && (
+                <li className="mt-4 pt-4 border-t border-slate-800">
+                  {branding.contact.address}
+                </li>
+              )}
             </ul>
           </div>
         </div>

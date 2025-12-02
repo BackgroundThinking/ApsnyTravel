@@ -22,6 +22,15 @@ export function Contacts() {
       </p>
 
       <div className="grid gap-4 max-w-md mx-auto">
+        {branding.contact.address && (
+          <div className="mb-6 p-4 bg-slate-50 rounded-lg">
+            <p className="text-sm text-slate-500 mb-1">Адрес офиса:</p>
+            <p className="text-lg font-medium text-slate-900">
+              {branding.contact.address}
+            </p>
+          </div>
+        )}
+
         <Button
           asChild
           size="lg"
