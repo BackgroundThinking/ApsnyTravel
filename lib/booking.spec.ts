@@ -1,8 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import {
-  bookingPayloadSchema,
-  submitBookingRequest,
-} from './booking';
+import { bookingPayloadSchema, submitBookingRequest } from './booking';
 
 describe('Booking Submission', () => {
   const validPayload = {
@@ -77,7 +74,7 @@ describe('Booking Submission', () => {
     vi.stubGlobal('fetch', fetchMock);
 
     await expect(submitBookingRequest(validPayload)).rejects.toThrow(
-      'Network fail',
+      'Не удалось отправить заявку. Попробуйте позже.',
     );
   });
 

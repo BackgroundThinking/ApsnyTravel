@@ -1,112 +1,140 @@
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { z } from 'zod';
 
-// Define the schema locally to avoid importing from client code (which might use import.meta.env)
-const futureDateSchema = z
-  .string()
-  .optional()
-  .refine((value) => {
-    if (!value) return true;
-    // Allow YYYY-MM-DD or full ISO
-    let parseString = value;
-    if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
-      parseString += 'T00:00:00';
-    }
-    const parsed = new Date(parseString);
-    if (Number.isNaN(parsed.getTime())) return false;
-    // We just check if it's a valid date string for the purpose of the API.
-    // Logic for "future" is good but we can be lenient on the server
-    // to avoid rejecting valid bookings due to timezone slight mismatches if not critical.
-    // However, adhering to the requirement "validate fields", I will keep it simple.
-    return true;
-  }, 'Некорректная дата');
+// --- CONFIGURATION & CONSTANTS ---
+// Centralized configuration for upstream API limits and endpoints.
+const TELEGRAM_API_BASE = 'https://api.telegram.org';
 
+// --- HELPER: HTML SANITIZATION ---
+// This function implements the defense against HTML Injection attacks.
+// It strictly replaces the 4 reserved characters in Telegram's HTML parse mode.
+// Reference: https://core.telegram.org/bots/api#html-style
+function escapeHtml(text: string): string {
+  if (!text) return '';
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// --- SCHEMA DEFINITION (ZERO TRUST) ---
+// Defined locally to isolate server build from client build artifacts.
+// This schema acts as the primary firewall for the application logic.
 const bookingSchema = z.object({
-  tourTitle: z.string().min(1),
-  client_name: z.string().min(1),
-  client_contact: z.string().min(1), // We expect sanitized input, but we'll validate basic non-empty
-  desired_date: futureDateSchema,
-  pax: z.number().int().positive(),
+  client_name: z.string().min(2, 'Name is too short'),
+  // Server-side validation is slightly more permissive (min(5)) to avoid
+  // rejecting potentially valid but oddly formatted numbers that bypassed client regex.
+  client_contact: z.string().min(5, 'Contact info is too short'),
+  tourTitle: z.string().min(1, 'Tour title is required'),
+  pax: z.number().min(1).max(20, 'Group size must be 1-20'),
+  desired_date: z.string().optional(),
   client_message: z.string().optional(),
 });
 
-export default async function handler(req: any, res: any) {
-  // 1. Method Guard
+/**
+ * Main Serverless Handler
+ * Routes: POST /api/book
+ */
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // 1. METHOD GUARD
+  // Strictly enforce HTTP verb correctness.
+  // GET requests (browser navigation) are rejected.
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  // 2. Security: Validate Body
   try {
-    const payload = bookingSchema.parse(req.body);
+    // 2. INPUT VALIDATION (ZERO TRUST)
+    // We treat req.body as a raw unknown. safeParse validates it against our strict schema.
+    const result = bookingSchema.safeParse(req.body);
 
-    const {
-      client_name,
-      client_contact,
-      desired_date,
-      pax,
-      tourTitle,
-      client_message,
-    } = payload;
-
-    // 3. Construct Telegram Message
-    // Using HTML parse_mode for reliability
-    const messageText = [
-      `🚀 <b>Новая заявка с сайта</b>`,
-      ``,
-      `👤 <b>Турист:</b> ${escapeHtml(client_name)}`,
-      `📞 <b>Связь:</b> ${escapeHtml(client_contact)}`,
-      `👥 <b>Кол-во:</b> ${pax} чел.`,
-      `📅 <b>Дата:</b> ${desired_date ? escapeHtml(desired_date) : 'Не указана'}`,
-      `🏔 <b>Тур:</b> ${escapeHtml(tourTitle)}`,
-      ``,
-      `💬 <b>Комментарий:</b> ${client_message ? escapeHtml(client_message) : 'Нет комментария'}`,
-    ].join('\n');
-
-    // 4. Send to Telegram
-    const chatId = process.env.TELEGRAM_CHAT_ID;
-    const botToken = process.env.TELEGRAM_BOT_TOKEN;
-
-    if (!chatId || !botToken) {
-      console.error('Missing Telegram configuration');
-      return res.status(500).json({ error: 'Server misconfiguration' });
+    if (!result.success) {
+      // 400 Bad Request: Client sent malformed data.
+      // We return detailed error messages to help the frontend display validation hints.
+      return res.status(400).json({
+        error: 'Invalid Data',
+        details: result.error.errors,
+      });
     }
 
-    const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+    const data = result.data;
 
-    const telegramResponse = await fetch(telegramUrl, {
+    // 3. SECRETS RESOLUTION
+    // Access environment variables securely injected by Vercel.
+    const botToken = process.env.TELEGRAM_BOT_TOKEN;
+    const chatId = process.env.TELEGRAM_CHAT_ID;
+
+    // Critical configuration check: Fail safely if secrets are missing.
+    if (!botToken || !chatId) {
+      console.error('SERVER_ERROR: Missing Telegram Environment Variables');
+      // Return 500 but do NOT leak the specific missing var name to the client.
+      return res
+        .status(500)
+        .json({ error: 'Internal Server Configuration Error' });
+    }
+
+    // 4. PAYLOAD CONSTRUCTION (HTML FORMATTING)
+    // Construct the visual representation for the Telegram Admin.
+    // Note usage of escapeHtml() on ALL user-provided fields.
+    const dateLine = data.desired_date
+      ? `📅 <b>Дата:</b> ${escapeHtml(data.desired_date)}`
+      : '📅 <b>Дата:</b> <i>Не указана</i>';
+
+    const messageHtml = [
+      `🚀 <b>Новая заявка с сайта</b>`,
+      ``,
+      `👤 <b>Турист:</b> ${escapeHtml(data.client_name)}`,
+      `📞 <b>Связь:</b> <a href="tel:${escapeHtml(data.client_contact)}">${escapeHtml(data.client_contact)}</a>`,
+      `👥 <b>Кол-во:</b> ${data.pax} чел.`,
+      dateLine,
+      `🏔 <b>Тур:</b> ${escapeHtml(data.tourTitle)}`,
+      ``,
+      `💬 <b>Комментарий:</b> ${data.client_message ? escapeHtml(data.client_message) : 'Нет комментария'}`,
+    ].join('\n');
+
+    // 5. UPSTREAM REQUEST (ZERO DEPENDENCY)
+    // Using native fetch implementation available in Node.js 18+.
+    // This avoids the overhead of 'node-telegram-bot-api' or 'axios'.
+    const telegramUrl = `${TELEGRAM_API_BASE}/bot${botToken}/sendMessage`;
+
+    const response = await fetch(telegramUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         chat_id: chatId,
-        text: messageText,
+        text: messageHtml,
         parse_mode: 'HTML',
+        // disable_web_page_preview: true // Keeps the chat clean
       }),
     });
 
-    if (!telegramResponse.ok) {
-      const errorText = await telegramResponse.text();
-      console.error('Telegram API Error:', errorText);
-      return res.status(502).json({ error: 'Failed to send to Telegram' });
+    // Parse the upstream response to check for API-level errors (e.g. 400 from Telegram)
+    const responseData = await response.json();
+
+    // 6. RESPONSE HANDLING & NO LEAKAGE
+    // Check both HTTP status and Telegram's logical 'ok' field.
+    // @ts-expect-error - responseData is unknown but we check 'ok' property
+    if (!response.ok || !responseData.ok) {
+      // Log the REAL upstream error for the admin/architect to see in Vercel logs.
+      // This is crucial for debugging "Bad Request" errors caused by formatting.
+      console.error(
+        'TELEGRAM_API_ERROR:',
+        JSON.stringify(responseData, null, 2),
+      );
+
+      // Return a sanitized error to the client.
+      // Do not forward the Telegram error description.
+      return res.status(502).json({ error: 'Upstream Error' });
     }
 
-    // 5. Success
+    // Success path
     return res.status(200).json({ success: true });
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      return res.status(400).json({ error: 'Invalid payload', details: error.errors });
-    }
-    console.error('Handler error:', error);
+    // Catch-all for unexpected runtime errors (e.g. JSON serialization failure).
+    console.error('UNHANDLED_EXCEPTION:', error);
     return res.status(500).json({ error: 'Internal Server Error' });
   }
-}
-
-function escapeHtml(text: string): string {
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
 }
