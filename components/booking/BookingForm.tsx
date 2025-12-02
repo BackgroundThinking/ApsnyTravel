@@ -10,6 +10,7 @@ import {
   BookingFormValues,
   submitBookingRequest,
 } from '../../lib/booking';
+import { branding } from '../../lib/branding';
 
 interface BookingFormProps {
   tourTitle: string;
@@ -58,8 +59,8 @@ export function BookingForm({ tourTitle }: BookingFormProps) {
           Заявка отправлена!
         </h3>
         <p className="text-teal-700">
-          Спасибо, {tourTitle} ждет вас. Александр свяжется с вами в течение 5
-          минут (в рабочее время).
+          Спасибо, {tourTitle} ждет вас. {branding.ownerName} свяжется с вами в
+          течение 5 минут (в рабочее время).
         </p>
       </div>
     );
@@ -96,7 +97,7 @@ export function BookingForm({ tourTitle }: BookingFormProps) {
         </label>
         <Input
           id="client_contact"
-          placeholder="+7 999 0000000"
+          placeholder={branding.contact.phone.placeholder}
           {...register('client_contact')}
           className={errors.client_contact ? 'border-red-500' : ''}
         />
