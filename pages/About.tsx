@@ -35,7 +35,7 @@ export function About() {
           </div>
           <div className="w-full md:w-2/3">
             <h1 className="text-4xl font-bold text-slate-900 mb-4">
-              {branding.siteName} — Влюбляю в Абхазию!
+              {branding.siteName} — {branding.heroTagline}
             </h1>
             <p className="text-xl text-slate-600 mb-6 font-medium">
               Здравствуйте! Меня зовут Александр, но друзья и гости называют

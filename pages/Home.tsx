@@ -50,7 +50,7 @@ export function Home() {
         </div>
         <div className="container relative z-10 mx-auto px-4 text-center">
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl mb-6">
-            «Влюбляю в Абхазию!»
+            «{branding.heroTagline}»
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-200 mb-10">
             Авторские туры по Абхазии, Сочи и Красной Поляне. VIP-трансфер.
