@@ -27,7 +27,7 @@
 
 ## Immediate “Silent Killers”
 
-1. **Hardcoded branding & contacts** block white-labeling and environment-driven overrides, forcing rebuilds for phone/email/social changes and leaking non-production contact data across deployments.【F:lib/branding.ts†L1-L20】
+1. **(RESOLVED)** **Hardcoded branding & contacts**: "Александр" and phone placeholders were extracted to `lib/branding.ts`, enabling centralized management.【F:lib/branding.ts】【F:components/booking/BookingForm.tsx】
 2. **CSR-only SEO** leaves search bots/social previews without meta/OG tags because `usePageMeta` mutates head post-hydration; no SSR/static metadata path exists.【F:lib/seo.ts†L86-L129】
 3. **Booking endpoint gap**: production without `VITE_BOOKING_ENDPOINT` throws, but no UI preflight or observability hook exists; users could reach the form, submit, and only then hit a fatal error with no retry/backoff strategy.【F:lib/booking.ts†L53-L85】【F:components/booking/BookingForm.tsx†L31-L172】
 
