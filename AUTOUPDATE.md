@@ -33,6 +33,7 @@ When in doubt, the **Code and Production Environment** are the final authorities
 - **Environment:**
   - `VITE_API_URL` (optional remote API).
   - `VITE_BOOKING_ENDPOINT` (required for production booking).
+  - `VITE_USE_MOCK` (toggles Mock Mode for development/testing).
 
 > **Rule:** If `AUTOUPDATE.md` conflicts with the actual code behavior, the code wins (and this doc should be fixed).
 
@@ -90,6 +91,10 @@ A maintenance cycle follows this repeatable loop:
 - **Dependency Audit:** Check for major updates to React, Vite, or Tailwind. _Note: Prioritize stability over newness._
 - **Code Quality:** Run `npm run lint` and propose fixes for any warnings.
 - **Test Coverage:** Ensure core logic in `lib/` has corresponding tests in `*.spec.ts`.
+- **CI/CD Check:** Verify `.github/workflows/ci.yml` matches local scripts.
+  - **Triggers:** Push to `main`, Pull Request to `main`.
+  - **Jobs:** Lint (`npm run lint`), Test (`npm test`), Build (`npm run build`).
+  - **Environment:** Node.js 20 on Ubuntu Latest.
 
 ### B. Content & Brand (As Needed)
 
@@ -99,11 +104,11 @@ A maintenance cycle follows this repeatable loop:
 ### C. Booking & Safety (Pre-Season)
 
 - **Validation Check:** Review Zod schemas in `lib/booking.ts` for loose constraints.
-- **Endpoint Verify:** Confirm `VITE_BOOKING_ENDPOINT` handling in `lib/api.ts` is robust.
+- **Endpoint Verify:** Confirm `VITE_BOOKING_ENDPOINT` handling in `lib/booking.ts` is robust.
 
 ### D. Docs & Governance (Continuous)
 
-- **Constellation Alignment:** Ensure `README.md`, `AGENT.md`, `INDEX.md`, and `GRAPH.md` are consistent.
+- **Constellation Alignment:** Ensure `README.md`, `AGENTS.md`, `INDEX.md`, and `GRAPH.md` are consistent.
 - **Auto-Update:** Self-correction of this file (`AUTOUPDATE.md`) if processes change.
 
 ## 6. How AI Agents Operate During Maintenance
@@ -134,12 +139,12 @@ When performing maintenance, @Jules and other agents must:
 
 - [ ] **Graph:** Does the change affect the architecture? Update `GRAPH.md`.
 - [ ] **Index:** Is there a new document? Update `INDEX.md`.
-- [ ] **Agent:** Does it change AI behavior? Update `AGENT.md`.
+- [ ] **Agent:** Does it change AI behavior? Update `AGENTS.md`.
 - [ ] **Readme:** Is it a critical project fact? Update `README.md`.
 
 ## 8. Cross-References
 
-- **`AGENT.md`**: Defines **who** the agents are and their behavioral "personality".
+- **`AGENTS.md`**: Defines **who** the agents are and their behavioral "personality".
 - **`CONTRIBUTING.md`**: Defines the **Git workflow** (PRs, branches) required to submit maintenance work.
 - **`README.md`**: The technical overview and setup guide.
 - **`GRAPH.md`**: The visual map of the system; consult this before structural refactoring.

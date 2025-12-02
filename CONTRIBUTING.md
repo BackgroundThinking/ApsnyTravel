@@ -108,7 +108,7 @@ We use **Vitest** for testing.
 
 This repository relies heavily on AI agents (like @Jules) for development.
 
-- **Refer to [AGENT.md](./AGENT.md)** for specific rules governing AI behavior, roles, and safety protocols.
+- **Refer to [AGENTS.md](./AGENTS.md)** for specific rules governing AI behavior, roles, and safety protocols.
 - **Refer to [AUTOUPDATE.md](./AUTOUPDATE.md)** for maintenance cycles and auto-update workflows.
 - **Key Rule**: AI proposes; humans review, decide, and merge.
 

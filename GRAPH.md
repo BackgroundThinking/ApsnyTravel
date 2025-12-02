@@ -41,11 +41,11 @@ graph TD
     BookingService -->|Validates| Booking
 
     %% Mock vs Remote
-    TourService -.->|Fetch (if PROD/Remote)| RemoteAPI
+    TourService -.->|Fetch (if VITE_API_URL defined)| RemoteAPI
     TourService -.->|Mock Data (Default)| LocalConsts[("constants.ts")]
 
-    BookingService -.->|POST (if Configured)| BookingEndpoint
-    BookingService -.->|Mock Response| LocalMocks[("Simulated Delay")]
+    BookingService -.->|POST (if VITE_BOOKING_ENDPOINT defined)| BookingEndpoint
+    BookingService -.->|Mock Response (if VITE_USE_MOCK=true)| LocalMocks[("Simulated Response")]
 
     %% Entity Relationships
     Tour -->|Has Many| Review
@@ -93,4 +93,7 @@ Abstracts data fetching.
 Handles lead generation.
 
 - **Validation**: Enforces phone format and future dates.
-- **Submission**: POSTs to `VITE_BOOKING_ENDPOINT` if defined; otherwise simulates success.
+- **Submission**:
+  - Checks `VITE_USE_MOCK`: If `true`, returns mocked success immediately.
+  - Checks `VITE_BOOKING_ENDPOINT`: If set, POSTs payload there.
+  - Fallback: Defaults to `/api/book` if endpoint is not configured.

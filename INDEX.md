@@ -5,7 +5,7 @@ Welcome to the documentation hub for **ApsnyTravel**. This index serves as a map
 ## 🚀 Getting Started
 
 - **[README.md](./README.md)**: The primary entry point. Contains the project overview, key features, tech stack, installation instructions, and deployment guide. **Start here.**
-- **[AGENT.md](./AGENT.md)**: Operational guide for AI agents and human collaboration. Defines roles, behaviors, and workflows. **Critical for AI agents.**
+- **[AGENTS.md](./AGENTS.md)**: Operational guide for AI agents and human collaboration. Defines roles, behaviors, and workflows. **Critical for AI agents.**
 - **[AUTOUPDATE.md](./AUTOUPDATE.md)**: Canonical playbook for ongoing maintenance and auto-update cycles.
 
 ## 📂 Architectural Documentation
