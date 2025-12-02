@@ -87,7 +87,10 @@ export function Footer() {
         </div>
 
         <div className="border-t border-slate-800 mt-8 pt-8 text-sm text-center text-slate-500">
-          <p>© {new Date().getFullYear()} {branding.siteName}. Все права защищены.</p>
+          <p>
+            © {new Date().getFullYear()} {branding.siteName}. Все права
+            защищены.
+          </p>
         </div>
       </div>
     </footer>

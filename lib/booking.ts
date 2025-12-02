@@ -66,34 +66,67 @@ export interface BookingSubmissionResult {
   response?: unknown;
 }
 
+/**
+ * Submits the booking request to the Serverless Gateway.
+ *
+ * @param payload - The validated booking data
+ * @returns Promise resolving to result object on success
+ * @throws BookingSubmissionError on failure
+ */
 export async function submitBookingRequest(
   payload: BookingPayload,
 ): Promise<BookingSubmissionResult> {
+  // Validate again just in case, though form should have handled it
   bookingPayloadSchema.parse(payload);
 
+  // 1. MOCK MODE CHECK
+  // Check for Mock Mode (useful for local UI testing without backend)
+  // This is strictly a dev-tool feature.
+  const isMockMode = import.meta.env.VITE_USE_MOCK === 'true';
+
+  if (isMockMode) {
+    console.warn('⚠️ MOCK MODE ACTIVE: Request simulated.');
+    // Minimal delay just to show loading spinner in UI
+    await new Promise((r) => setTimeout(r, 500));
+    return { ok: true, mocked: true, response: { success: true } };
+  }
+
+  // 2. ENDPOINT RESOLUTION
   // Default to local API route if not configured
   const endpoint = import.meta.env.VITE_BOOKING_ENDPOINT || '/api/book';
 
-  const response = await fetch(endpoint, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload),
-  }).catch((error: unknown) => {
-    throw new BookingSubmissionError(
-      (error as Error)?.message || 'Network error',
-    );
-  });
+  try {
+    // 3. NETWORK REQUEST
+    // Immediate execution. No artificial delays.
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
 
-  if (!response.ok) {
-    const message = await response.text().catch(() => '');
+    // 4. RESPONSE HANDLING
+    const data = await response.json().catch(() => undefined);
+
+    if (!response.ok) {
+      // Extract error message from server response if available
+      // Ideally, the server sends { error: '...' }
+      const errorMessage = data?.error || `Server Error: ${response.status}`;
+      throw new BookingSubmissionError(errorMessage, response.status);
+    }
+
+    // Success implies { success: true }
+    return { ok: true, mocked: false, response: data };
+  } catch (error) {
+    // Re-throw known errors (business logic failures)
+    if (error instanceof BookingSubmissionError) {
+      throw error;
+    }
+    // Wrap unexpected network errors (e.g., offline, DNS fail)
+    console.error('Booking Submission Failed:', error);
     throw new BookingSubmissionError(
-      message || 'Не удалось отправить заявку. Попробуйте позже.',
-      response.status,
+      'Не удалось отправить заявку. Попробуйте позже.',
     );
   }
-
-  const parsedResponse = await response.json().catch(() => undefined);
-  return { ok: true, mocked: false, response: parsedResponse };
 }
