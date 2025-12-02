@@ -7,8 +7,7 @@ import { branding } from '@/lib/branding';
 export function Contacts() {
   usePageMeta({
     title: 'Контакты',
-    description:
-      'Свяжитесь с ApsnyTravel: Telegram, WhatsApp или звонок напрямую для уточнения деталей тура.',
+    description: `Свяжитесь с ${branding.siteName}: Telegram, WhatsApp или звонок напрямую для уточнения деталей тура.`,
     path: '/contacts',
   });
 
