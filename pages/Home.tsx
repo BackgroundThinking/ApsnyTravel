@@ -13,6 +13,7 @@ import { Button } from '../components/ui/button';
 import { TourCard } from '../components/tours/TourCard';
 import { fetchTours } from '../lib/api';
 import { usePageMeta } from '../lib/seo';
+import { branding } from '../lib/branding';
 import { Tour } from '../types';
 
 export function Home() {
@@ -206,7 +207,7 @@ export function Home() {
           </div>
           <div className="w-full md:w-1/2">
             <h2 className="text-3xl font-bold mb-4">
-              ApsnyTravel — это больше, чем такси
+              {branding.siteName} — это больше, чем такси
             </h2>
             <p className="text-lg text-slate-300 mb-6">
               Я — Александр, ваш персональный гид и водитель. Я родился здесь и

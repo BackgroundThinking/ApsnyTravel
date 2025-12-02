@@ -1,5 +1,6 @@
 import React from 'react';
 import { usePageMeta } from '../lib/seo';
+import { branding } from '../lib/branding';
 import {
   Car,
   CheckCircle2,
@@ -34,7 +35,7 @@ export function About() {
           </div>
           <div className="w-full md:w-2/3">
             <h1 className="text-4xl font-bold text-slate-900 mb-4">
-              ApsnyTravel — Влюбляю в Абхазию!
+              {branding.siteName} — Влюбляю в Абхазию!
             </h1>
             <p className="text-xl text-slate-600 mb-6 font-medium">
               Здравствуйте! Меня зовут Александр, но друзья и гости называют
@@ -43,7 +44,7 @@ export function About() {
             <div className="prose prose-slate text-slate-600">
               <p>
                 Я — основатель и идейный вдохновитель туристического агентства{' '}
-                <strong>ApsnyTravel</strong> (Апсны-Трэвел).
+                <strong>{branding.siteName}</strong> (Апсны-Трэвел).
               </p>
               <p>
                 <strong>Более 30 лет</strong> я работаю в сфере гостеприимства
@@ -151,7 +152,7 @@ export function About() {
         {/* Why Choose Us Section */}
         <div className="bg-slate-50 rounded-2xl p-8 md:p-12 mb-16">
           <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center">
-            Почему выбирают ApsnyTravel
+            Почему выбирают {branding.siteName}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="flex gap-4">
